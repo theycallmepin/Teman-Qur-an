@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38bdf8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Teman Qur'an by Fitri Qur'an</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#f0f9ff;background-image:radial-gradient(circle at 20% 30%,rgba(186,230,255,.4),transparent 50%),radial-gradient(circle at 80% 20%,rgba(252,231,243,.5),transparent 50%),radial-gradient(circle at 50% 90%,rgba(252,231,243,.35),transparent 55%);background-attachment:fixed;color:#334155}
+body::before{content:"\1F4FF\2003\1F4D6\2003\1F54C\2003\1F319\2003\1F3EE\2003\1F4D6\2003\1F319\2003\1F3EE\2003\1F4FF\2003\1F54C\2003\1F3EE\2003\1F4FF\2003\1F319\2003\1F4D6\2003\1F54C\2003\1F319\2003\1F3EE\2003\1F4FF\2003\1F54C\2003\1F4D6\2003\1F3EE\2003\1F319\2003\1F4D6\2003\1F54C\2003\1F4FF\2003\1F319\2003\1F3EE\2003\1F4D6\2003\1F54C";position:fixed;inset:0;font-size:46px;line-height:2.6;letter-spacing:22px;opacity:.05;overflow:hidden;pointer-events:none;z-index:0;word-break:break-all;text-align:center}
+.card{background:rgba(255,255,255,.92);border:1px solid #e0f2fe;border-radius:1rem;box-shadow:0 4px 14px rgba(56,189,248,.15)}
+.card-hl{background:linear-gradient(135deg,#e0f2fe,#fce7f3);border:1px solid #f9a8d4;border-radius:1rem;box-shadow:0 4px 14px rgba(244,114,182,.18)}
+.card-highlight{background:linear-gradient(135deg,#bae6fd,#fbcfe8);border:2px solid #7dd3fc;border-radius:1rem;box-shadow:0 10px 25px rgba(56,189,248,.35)}
+.btn{background:linear-gradient(135deg,#38bdf8,#f472b6);color:#fff}
+.arab{font-family:'Amiri','Traditional Arabic','Scheherazade New',serif;direction:rtl;line-height:2.2}
+.glass{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+#nav::-webkit-scrollbar{display:none}
+main,header{position:relative;z-index:1}
+body::before{display:none}
+.hlon{background:#fbcfe8!important;border-color:#f472b6!important}
+details>summary{list-style:none}
+</style>
+</head>
+<body>
+<svg class="fixed inset-0 w-full h-full pointer-events-none" style="z-index:0" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs><filter id="wc" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter><filter id="wd"><feGaussianBlur stdDeviation="1.4"/></filter></defs>
+<g filter="url(#wc)"><circle cx="70" cy="110" r="110" fill="#bae6fd" opacity=".7"/><circle cx="350" cy="230" r="120" fill="#fbcfe8" opacity=".7"/><circle cx="60" cy="470" r="120" fill="#fbcfe8" opacity=".5"/><circle cx="340" cy="620" r="130" fill="#bae6fd" opacity=".65"/><circle cx="180" cy="770" r="120" fill="#fbcfe8" opacity=".5"/></g>
+<g filter="url(#wd)" opacity=".4">
+<path d="M330 60a34 34 0 1 0 22 58a28 28 0 1 1-22-58z" fill="#f9a8d4"/>
+<path d="M120 800V705a80 80 0 0 1 160 0V800z" fill="#7dd3fc"/><rect x="190" y="610" width="20" height="30" rx="10" fill="#7dd3fc"/>
+<rect x="88" y="620" width="16" height="180" fill="#f9a8d4"/><rect x="296" y="620" width="16" height="180" fill="#f9a8d4"/><circle cx="96" cy="612" r="10" fill="#f9a8d4"/><circle cx="304" cy="612" r="10" fill="#f9a8d4"/>
+<g fill="#f9a8d4"><circle cx="24" cy="300" r="8"/><circle cx="36" cy="326" r="8"/><circle cx="56" cy="346" r="8"/><circle cx="82" cy="358" r="8"/><circle cx="110" cy="362" r="8"/><circle cx="138" cy="356" r="8"/><circle cx="160" cy="342" r="8"/></g>
+<path d="M200 500q40-24 80 0v68q-40-24-80 0zM280 500q40-24 80 0v68q-40-24-80 0z" fill="#fff" stroke="#7dd3fc" stroke-width="3"/>
+<rect x="44" y="150" width="28" height="46" rx="9" fill="#f9a8d4"/><path d="M58 130v20" stroke="#7dd3fc" stroke-width="3"/>
+</g></svg>
+<div class="max-w-xl mx-auto min-h-screen relative">
+
+<header class="bg-gradient-to-br from-sky-400 via-sky-300 to-pink-400 text-white px-5 pt-16 pb-5 rounded-b-3xl shadow-lg">
+  <p class="text-base font-semibold">Assalamu'alaikum Sahabat Qur'an</p>
+  <h1 class="text-2xl font-bold">Teman Qur'an</h1>
+  <p class="text-sm opacity-90">by Fitri Qur'an</p>
+  <div id="hijri" class="mt-2 text-xs bg-white/25 rounded-xl px-3 py-2"></div>
+  <input id="q" placeholder="Cari surat (nama, arti, atau nomor)..." class="mt-3 w-full px-4 py-2 rounded-xl text-slate-700 bg-white/90 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-300">
+</header>
+
+<main class="p-4 pb-44">
+  <section id="quran" class="sec">
+    <div id="qlist" class="space-y-2"><p class="text-center text-slate-500">Memuat 114 surat...</p></div>
+    <div id="qdetail" class="hidden"></div>
+  </section>
+
+  <section id="kiblat" class="sec hidden text-center">
+    <h2 class="font-bold text-lg">Arah Kiblat</h2>
+    <p class="text-sm text-slate-500 mb-4">Menuju Ka'bah (21.4225, 39.8262)</p>
+    <div class="relative mx-auto w-64 h-64 rounded-full bg-white/90 border-4 border-sky-300 shadow-inner flex items-center justify-center">
+      <span class="absolute top-2 text-xs font-bold text-sky-500">U</span>
+      <div id="arrow" class="transition-transform duration-300">
+        <svg width="90" height="220" viewBox="0 0 90 220"><polygon points="45,5 80,110 45,95 10,110" fill="#ec4899"/><polygon points="45,215 70,120 45,130 20,120" fill="#bae6fd"/></svg>
+      </div>
+    </div>
+    <p id="kinfo" class="mt-4 text-slate-600">Tekan tombol untuk mulai.</p>
+    <button onclick="startQibla()" class="btn mt-3 px-6 py-3 rounded-2xl font-semibold shadow">Aktifkan GPS &amp; Kompas</button>
+  </section>
+
+  <section id="sholat" class="sec hidden">
+    <h2 class="font-bold text-lg">Jadwal Sholat Blitar</h2>
+    <p id="stgl" class="text-sm text-slate-500 mb-3"></p>
+    <div id="sjadwal" class="grid grid-cols-2 gap-2 mb-6"></div>
+    <div class="card p-5 text-center">
+      <h3 class="font-bold">Tasbih Digital</h3>
+      <p class="text-xs text-slate-500 mb-3">Reset otomatis tiap 33</p>
+      <button id="tas" onclick="tap()" class="btn w-40 h-40 rounded-full text-6xl font-bold shadow-lg active:scale-95 transition">0</button>
+      <p class="mt-3 text-sm text-slate-600">Putaran selesai: <b id="tround">0</b></p>
+      <button onclick="resetTas()" class="mt-2 text-sm text-pink-500 underline">Reset semua</button>
+    </div>
+  </section>
+
+  <section id="jurnal" class="sec hidden">
+    <h2 class="font-bold text-lg mb-3">Jurnal Tadabbur</h2>
+    <input id="jsurat" placeholder="Nama surat / ayat (mis. Al-Fatihah 1-7)" class="w-full mb-2 px-4 py-2 rounded-xl border border-sky-200 bg-white/90 focus:outline-none focus:border-pink-400">
+    <textarea id="jtext" rows="4" placeholder="Apa yang kamu renungkan dari ayat ini?" class="w-full mb-2 px-4 py-2 rounded-xl border border-sky-200 bg-white/90 focus:outline-none focus:border-pink-400"></textarea>
+    <button onclick="saveJ()" class="btn w-full py-3 rounded-2xl font-semibold shadow">Simpan</button>
+    <div id="jlist" class="mt-4 space-y-2"></div>
+  </section>
+
+  <section id="apotek" class="sec hidden"><h2 class="font-bold text-lg mb-3">Apotek Nabi</h2><div id="apotekL" class="space-y-3"></div></section>
+  <section id="fyi" class="sec hidden"><h2 class="font-bold text-lg mb-1">FYI Islam &amp; Sains</h2><p class="text-xs text-slate-500 mb-3">Sebagian poin adalah tafsir ilmiah kontemporer; ulama dan ilmuwan berbeda pandangan.</p><div id="fyiL" class="space-y-3"></div></section>
+  <section id="nabi" class="sec hidden"><h2 class="font-bold text-lg">25 Nabi dan Rasul</h2><p class="text-xs text-slate-500 mb-3">Ketuk kartu untuk membaca kisahnya.</p><div id="nabiL" class="space-y-2"></div></section>
+  <section id="ilmuwan" class="sec hidden"><h2 class="font-bold text-lg">6 Ilmuwan Muslim</h2><p class="text-xs text-slate-500 mb-3">Ketuk kartu untuk kisah lengkap.</p><div id="ilmuwanL" class="space-y-3"></div></section>
+  <section id="sahabat" class="sec hidden"><h2 class="font-bold text-lg">10 Sahabat Teladan</h2><p class="text-xs text-slate-500 mb-3">Ketuk kartu untuk membaca kisahnya.</p><div id="sahabatL" class="space-y-2"></div></section>
+  <section id="parenting" class="sec hidden"><h2 class="font-bold text-lg mb-3">Parenting Nabawi</h2><div id="parL" class="space-y-3"></div></section>
+</main>
+
+<div class="fixed inset-x-0 top-12 z-40">
+  <div id="abar" class="max-w-xl mx-auto hidden glass border-t-2 border-pink-300 px-3 py-2 shadow-lg">
+    <p id="atitle" class="text-xs font-semibold text-sky-600 mb-1 truncate"></p>
+    <audio id="au" controls class="w-full h-9"></audio>
+  </div>
+</div>
+
+<nav class="fixed inset-x-0 top-0 z-50">
+  <div id="nav" class="glass max-w-xl mx-auto flex overflow-x-auto gap-1 border-b border-white/60 px-2 py-2 shadow-[0_4px_20px_rgba(56,189,248,.2)]" style="scrollbar-width:none"></div>
+</nav>
+</div>
+
+<div id="modal" class="hidden fixed inset-0 bg-black/40 z-[60] items-center justify-center p-4" onclick="if(event.target===this)closeModal()">
+  <div id="modalBox" class="bg-white rounded-3xl max-w-md w-full max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-sky-200">
+    <div class="bg-gradient-to-br from-sky-400 via-sky-300 to-pink-400 text-white px-5 py-4 rounded-t-3xl flex justify-between items-center">
+      <h3 id="mTitle" class="font-bold text-lg"></h3>
+      <button onclick="closeModal()" class="text-2xl leading-none px-2" aria-label="Tutup">&times;</button>
+    </div>
+    <div id="mBody" class="p-5 text-sm leading-relaxed text-slate-700"></div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* MODAL */
+function openModal(title,content){$('mTitle').textContent=title;$('mBody').innerHTML=content;const m=$('modal');m.classList.remove('hidden');m.classList.add('flex');$('modalBox').scrollTop=0}
+function closeModal(){const m=$('modal');m.classList.add('hidden');m.classList.remove('flex')}
+addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* NAV */
+const menus=[['quran',"Qur'an"],['kiblat','Kiblat'],['sholat','Sholat'],['jurnal','Jurnal'],['apotek','Apotek Nabi'],['fyi','FYI Sains'],['nabi','25 Nabi'],['ilmuwan','Ilmuwan'],['sahabat','Sahabat'],['parenting','Parenting']];
+$('nav').innerHTML=menus.map(m=>`<button data-m="${m[0]}" onclick="show('${m[0]}')" class="nb shrink-0 px-3 py-2 rounded-xl text-xs font-semibold">${m[1]}</button>`).join('');
+function show(id){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('hidden',s.id!==id));
+  document.querySelectorAll('.nb').forEach(b=>{const on=b.dataset.m===id;b.className='nb shrink-0 px-3 py-2 rounded-xl text-xs font-semibold '+(on?'btn shadow':'text-slate-500')});
+  $('q').classList.toggle('hidden',id!=='quran'||!$('qdetail').classList.contains('hidden'));
+  if(id==='sholat')loadSholat();
+  scrollTo(0,0);
+}
+
+/* QURAN */
+let surat=[],cur=null;
+fetch('https://equran.id/api/v2/surat').then(r=>r.json()).then(d=>{surat=d.data;renderList('')}).catch(()=>{$('qlist').innerHTML='<p class="text-center text-pink-500">Gagal memuat. Periksa koneksi internet.</p>'});
+function renderList(f){
+  f=f.toLowerCase();
+  $('qlist').innerHTML=surat.filter(s=>!f||s.namaLatin.toLowerCase().includes(f)||s.arti.toLowerCase().includes(f)||String(s.nomor)===f).map(s=>`
+  <div class="card p-3 flex items-center gap-3">
+    <div class="btn w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0">${s.nomor}</div>
+    <div class="flex-1 min-w-0"><p class="font-semibold">${s.namaLatin}</p><p class="text-xs text-slate-500">${s.arti} - ${s.jumlahAyat} ayat - ${s.tempatTurun}</p></div>
+    <p class="arab text-xl text-sky-600">${s.nama}</p>
+    <button onclick="openSurat(${s.nomor})" class="btn px-3 py-2 rounded-xl text-xs font-semibold">Buka</button>
+  </div>`).join('');
+}
+$('q').oninput=e=>renderList(e.target.value.trim());
+function openSurat(id){
+  $('qlist').classList.add('hidden');$('q').classList.add('hidden');
+  const dv=$('qdetail');dv.classList.remove('hidden');dv.innerHTML='<p class="text-center text-slate-500">Memuat surat...</p>';
+  fetch('https://equran.id/api/v2/surat/'+id).then(r=>r.json()).then(d=>{
+    const s=cur=d.data;
+    dv.innerHTML=`<button onclick="closeSurat()" class="mb-3 text-sm text-pink-500 font-semibold">&larr; Kembali</button>
+    <div class="rounded-2xl p-4 bg-gradient-to-br from-sky-400 via-sky-300 to-pink-400 text-white text-center mb-3 shadow-lg">
+      <p class="arab text-3xl">${s.nama}</p><p class="font-bold">${s.namaLatin} - ${s.arti}</p><p class="text-xs opacity-90">${s.jumlahAyat} ayat - ${s.tempatTurun}</p>
+      <button onclick="playAudio(cur.audioFull['05'],cur.namaLatin)" class="mt-3 px-5 py-2 rounded-xl bg-white text-sky-600 font-semibold text-sm">Play Audio Surat</button>
+    </div>
+    <div class="space-y-3">${s.ayat.map((a,i)=>`<div class="card p-4 ${isHL(s.nomor,a.nomorAyat)?'hlon':''}">
+      <div class="flex justify-between items-center mb-1"><span class="w-7 h-7 rounded-full bg-pink-100 text-pink-600 text-xs font-bold flex items-center justify-center">${a.nomorAyat}</span>
+      <div class="flex gap-1"><button onclick="toggleHL(this,${s.nomor},${a.nomorAyat})" class="text-xs px-3 py-1 rounded-lg border border-pink-300 bg-white text-pink-500">${isHL(s.nomor,a.nomorAyat)?'Hapus stabilo':'Stabilo'}</button><button onclick="playAyat(${i})" class="btn text-xs px-3 py-1 rounded-lg">Play</button></div></div>
+      <p class="arab text-2xl text-right">${a.teksArab}</p>
+      <p class="text-sm text-sky-600 mt-1 italic">${a.teksLatin}</p>
+      <p class="text-sm text-slate-600 mt-1">${a.teksIndonesia}</p>
+      <details class="mt-2 rounded-xl bg-sky-50 p-3" open><summary class="text-xs font-bold text-pink-500 cursor-pointer">Inti maksud ayat (tafsir)</summary><p class="tf text-sm text-slate-700 mt-2 leading-relaxed whitespace-pre-line" data-a="${a.nomorAyat}">Memuat tafsir...</p></details></div>`).join('')}</div>`;
+    scrollTo(0,0);
+  }).catch(()=>{dv.innerHTML='<button onclick="closeSurat()" class="text-pink-500">&larr; Kembali</button><p class="text-pink-500 mt-3">Gagal memuat surat.</p>'});
+}
+function closeSurat(){$('qdetail').classList.add('hidden');$('qlist').classList.remove('hidden');$('q').classList.remove('hidden')}
+function playAyat(i){const a=cur.ayat[i];playAudio(a.audio['05'],cur.namaLatin+' ayat '+a.nomorAyat)}
+
+/* AUDIO + MEDIASESSION */
+const au=$('au');
+function playAudio(url,title){
+  $('abar').classList.remove('hidden');$('atitle').textContent='Sedang diputar: '+title;
+  au.src=url;au.play().catch(()=>{});
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata=new MediaMetadata({title:title,artist:'Misyari Rasyid Al-Afasy',album:"Teman Qur'an by Fitri Qur'an",artwork:[{src:'https://cdn-icons-png.flaticon.com/512/1702/1702649.png',sizes:'512x512',type:'image/png'}]});
+    navigator.mediaSession.setActionHandler('play',()=>au.play());
+    navigator.mediaSession.setActionHandler('pause',()=>au.pause());
+    navigator.mediaSession.setActionHandler('seekbackward',()=>{au.currentTime=Math.max(0,au.currentTime-10)});
+    navigator.mediaSession.setActionHandler('seekforward',()=>{au.currentTime+=10});
+  }
+}
+
+/* KIBLAT */
+let qb=null;
+function calcQibla(la,lo){
+  const r=Math.PI/180,p1=la*r,p2=21.4225*r,dl=(39.8262-lo)*r;
+  return (Math.atan2(Math.sin(dl),Math.cos(p1)*Math.tan(p2)-Math.sin(p1)*Math.cos(dl))/r+360)%360;
+}
+function startQibla(){
+  if(!navigator.geolocation){$('kinfo').textContent='GPS tidak didukung.';return}
+  $('kinfo').textContent='Mencari lokasi...';
+  navigator.geolocation.getCurrentPosition(p=>{
+    qb=calcQibla(p.coords.latitude,p.coords.longitude);
+    $('kinfo').innerHTML='Arah kiblat: <b class="text-pink-500">'+qb.toFixed(1)+'&deg;</b> dari Utara';
+    $('arrow').style.transform='rotate('+qb+'deg)';
+    const start=()=>{addEventListener('deviceorientationabsolute',ori,true);addEventListener('deviceorientation',ori,true)};
+    if(typeof DeviceOrientationEvent!=='undefined'&&DeviceOrientationEvent.requestPermission){
+      DeviceOrientationEvent.requestPermission().then(s=>{if(s==='granted')start()}).catch(()=>{});
+    }else start();
+  },()=>{$('kinfo').textContent='Izin lokasi ditolak. Aktifkan GPS di pengaturan browser.'},{enableHighAccuracy:true});
+}
+function ori(e){
+  if(qb===null)return;
+  let h=e.webkitCompassHeading!==undefined?e.webkitCompassHeading:(e.alpha!==null?(e.absolute||e.type==='deviceorientationabsolute'?360-e.alpha:null):null);
+  if(h===null||h===undefined)return;
+  $('arrow').style.transform='rotate('+((qb-h+360)%360)+'deg)';
+}
+
+/* SHOLAT + TASBIH */
+let sLoaded=false;
+function loadSholat(){
+  if(sLoaded)return;
+  const d=new Date(),ymd=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  $('stgl').textContent=d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  $('sjadwal').innerHTML='<p class="col-span-2 text-center text-slate-500">Memuat...</p>';
+  fetch('https://api.myquran.com/v2/sholat/jadwal/1609/'+ymd).then(r=>r.json()).then(r=>{
+    const j=r.data.jadwal;sLoaded=true;
+    $('sjadwal').innerHTML=[['Imsak','imsak'],['Subuh','subuh'],['Terbit','terbit'],['Dhuha','dhuha'],['Dzuhur','dzuhur'],['Ashar','ashar'],['Maghrib','maghrib'],['Isya','isya']].map(x=>`<div class="card p-3 text-center"><p class="text-xs text-slate-500">${x[0]}</p><p class="text-xl font-bold text-pink-500">${j[x[1]]}</p></div>`).join('');
+  }).catch(()=>{$('sjadwal').innerHTML='<p class="col-span-2 text-center text-pink-500">Gagal memuat jadwal.</p>'});
+}
+let cnt=0,rnd=0;
+function tap(){cnt++;if(cnt>=33){cnt=0;rnd++;navigator.vibrate&&navigator.vibrate(200)}else navigator.vibrate&&navigator.vibrate(15);$('tas').textContent=cnt;$('tround').textContent=rnd}
+function resetTas(){cnt=0;rnd=0;$('tas').textContent=0;$('tround').textContent=0}
+
+/* JURNAL */
+function getJ(){try{return JSON.parse(localStorage.getItem('tq_jurnal')||'[]')}catch(e){return[]}}
+function setJ(a){try{localStorage.setItem('tq_jurnal',JSON.stringify(a))}catch(e){}}
+function saveJ(){
+  const s=$('jsurat').value.trim(),t=$('jtext').value.trim();
+  if(!s||!t){alert('Isi surat dan tadabbur dulu ya.');return}
+  const a=getJ();a.unshift({s,t,d:new Date().toLocaleDateString('id-ID')});setJ(a);
+  $('jsurat').value='';$('jtext').value='';renderJ();
+}
+function delJ(i){const a=getJ();a.splice(i,1);setJ(a);renderJ()}
+function renderJ(){
+  const a=getJ();
+  $('jlist').innerHTML=a.length?a.map((e,i)=>`<div class="card p-4"><div class="flex justify-between"><h3 class="font-bold text-sky-700">${esc(e.s)}</h3><button onclick="delJ(${i})" class="text-xs text-pink-500">Hapus</button></div><p class="text-xs text-slate-400">${e.d}</p><p class="text-sm mt-1 whitespace-pre-wrap">${esc(e.t)}</p></div>`).join(''):'<p class="text-center text-slate-500 text-sm">Belum ada catatan.</p>';
+}
+
+/* DATA STATIS */
+const box=(t,b,cls,extra)=>`<div class="${cls} p-4">${extra||''}<h3 class="font-bold text-sky-700">${t}</h3><p class="text-sm text-slate-600 mt-1">${b}</p></div>`;
+
+const apotek=[
+['Madu',"Penyembuh bagi manusia dan sumber energi alami.","QS An-Nahl: 69"],
+['Habbatus Sauda',"Jintan hitam; Nabi bersabda ia obat segala penyakit kecuali kematian.","HR Bukhari &amp; Muslim"],
+['Zaitun',"Pohon yang diberkahi; minyaknya untuk makan dan dioleskan.","QS An-Nur: 35; HR Tirmidzi"],
+['Kurma Ajwa',"Dianjurkan dimakan di pagi hari sebagai penjaga tubuh.","HR Bukhari &amp; Muslim"],
+['Jahe',"Minuman surga bercampur zanjabil; hangat untuk tubuh.","QS Al-Insan: 17"],
+['Susu',"Minuman murni yang mudah diminum dan bergizi.","QS An-Nahl: 66"],
+['Delima',"Buah yang disebut Allah di antara nikmat surga.","QS Al-An'am: 99; Ar-Rahman: 68"],
+['Timun',"Nabi makan ruthab (kurma segar) bersama timun.","HR Bukhari &amp; Muslim"],
+['Semangka',"Nabi makan semangka bersama kurma segar.","HR Abu Dawud &amp; Tirmidzi"]];
+$('apotekL').innerHTML=apotek.map((a,i)=>box(a[0],a[1]+'<br><span class="text-pink-500 font-semibold text-xs">Dalil: '+a[2]+'</span>',i%2?'card-hl':'card')).join('');
+
+const fyi=[
+['Big Bang',"Langit dan bumi dahulu menyatu, lalu dipisahkan.","QS Al-Anbiya: 30"],
+['Laut Tak Bercampur',"Dua lautan bertemu namun dibatasi, tidak saling melampaui.","QS Ar-Rahman: 19-20"],
+['Kampus Tertua: Al-Qarawiyyin',"Universitas tertua yang masih beroperasi, di Fez, Maroko, didirikan tahun 859 M oleh Fatimah Al-Fihri, muslimah dermawan dan visioner.","Ilmu untuk semua"],
+["Ka'bah dan Golden Ratio","Sebagian peneliti mengaitkan proporsi Ka'bah dengan rasio emas. Ini klaim populer yang belum disepakati ilmuwan; anggap sebagai bahan renungan.","Info tambahan"],
+['Gunung Pasak',"Gunung digambarkan sebagai pasak bumi.","QS An-Naba: 6-7"],
+['Sidik Jari',"Allah mampu menyusun kembali ujung jari manusia.","QS Al-Qiyamah: 3-4"],
+['Besi Diturunkan',"Besi diturunkan dengan kekuatan hebat dan manfaat bagi manusia.","QS Al-Hadid: 25"],
+['Embrio',"Tahapan nuthfah, alaqah, mudghah, hingga tulang berbalut daging.","QS Al-Mu'minun: 12-14"],
+['Hujan',"Angin menggerakkan awan, lalu hujan turun menghidupkan bumi.","QS Ar-Rum: 48"],
+['Madu',"Lebah menghasilkan minuman beraneka warna yang menyembuhkan.","QS An-Nahl: 68-69"]];
+$('fyiL').innerHTML=fyi.map((f,i)=>{
+  const body=f[1]+'<br><span class="text-pink-500 font-semibold text-xs">'+f[2]+'</span>';
+  return i===2?box((i+1)+'. '+f[0],body,'card-highlight relative','<span class="absolute -top-2 -right-2 bg-white border-2 border-pink-300 rounded-full px-2 py-0.5 text-xs font-bold text-pink-500 shadow">&#11088; 859 M</span>'):box((i+1)+'. '+f[0],body,'card');
+}).join('');
+
+/* Nabi, ilmuwan, sahabat: data + modal */
+const nabi=[
+['Adam','Diciptakan dari tanah dan ditempatkan di surga bersama Hawa. Setelah tergoda iblis, keduanya bertaubat dan Allah menerima taubatnya. Adam turun ke bumi sebagai khalifah dan nabi pertama.'],
+['Idris','Dikenal rajin belajar, menulis, dan sabar. Al-Qur\'an menyebutnya seorang nabi yang jujur dan ditinggikan pada kedudukan yang tinggi (QS Maryam: 56-57).'],
+['Nuh','Berdakwah sangat lama kepada kaumnya yang menolak. Atas perintah Allah ia membuat bahtera; orang beriman selamat saat banjir besar melanda.'],
+['Hud','Diutus kepada kaum Ad yang kuat namun sombong. Mereka mendustakan Hud dan dibinasakan oleh angin yang sangat dahsyat.'],
+['Shalih','Diutus kepada kaum Tsamud. Mukjizatnya unta betina yang keluar dari batu. Kaumnya menyembelih unta itu sehingga azab menimpa mereka.'],
+['Ibrahim','Khalilullah yang menentang penyembahan berhala. Selamat dari api Namrud, membangun Ka\'bah bersama Ismail, dan taat saat diuji dengan perintah menyembelih putranya.'],
+['Luth','Diutus kepada kaum yang melakukan perbuatan keji. Ia dan pengikutnya diselamatkan, sementara kaum yang durhaka dibinasakan.'],
+['Ismail','Putra Ibrahim dan Hajar. Sabar dan taat saat diuji, kelahirannya terkait dengan mata air Zamzam, dan ia membantu ayahnya membangun Ka\'bah.'],
+['Ishaq','Putra Ibrahim dan Sarah, kabar gembira dari malaikat di usia lanjut. Ia menjadi ayah Nabi Ya\'qub.'],
+['Ya\'qub','Bergelar Israil, ayah dua belas putra. Ia sabar menghadapi kehilangan Yusuf dan berbaik sangka kepada Allah.'],
+['Yusuf','Dibuang saudara-saudaranya ke sumur, dijual sebagai budak, difitnah, lalu dipenjara. Allah mengangkatnya menjadi pejabat Mesir, dan ia memaafkan saudara-saudaranya.'],
+['Ayyub','Diuji dengan sakit dan hilangnya harta, namun tetap bersabar dan berdoa. Allah menyembuhkannya dan mengembalikan nikmatnya.'],
+['Syu\'aib','Diutus kepada penduduk Madyan yang curang dalam takaran dan timbangan. Ia menyeru kejujuran; kaum yang membangkang ditimpa azab.'],
+['Musa','Dibesarkan di istana Firaun, menerima wahyu di Thursina, dan memimpin Bani Israil keluar dari Mesir. Laut terbelah dengan izin Allah.'],
+['Harun','Kakak Musa yang fasih berbicara. Ia mendampingi Musa berdakwah kepada Firaun dan Bani Israil.'],
+['Dzulkifli','Disebut Al-Qur\'an sebagai nabi yang termasuk orang-orang sabar dan saleh (QS Al-Anbiya: 85). Rincian kisahnya tidak banyak diceritakan.'],
+['Dawud','Mengalahkan Jalut, diberi kerajaan dan kitab Zabur, serta dikaruniai suara yang merdu ketika bertasbih.'],
+['Sulaiman','Putra Dawud yang bijak. Allah memberinya kerajaan besar dan kemampuan memahami bahasa hewan; kisahnya dengan Ratu Saba\' terkenal.'],
+['Ilyas','Menyeru kaumnya meninggalkan penyembahan berhala Ba\'al dan kembali menyembah Allah semata.'],
+['Ilyasa\'','Penerus dakwah Nabi Ilyas, disebut Al-Qur\'an termasuk orang-orang pilihan yang terbaik.'],
+['Yunus','Pergi meninggalkan kaumnya sebelum diizinkan, lalu ditelan ikan besar. Dalam gelap ia berdoa, Allah menyelamatkannya, dan kaumnya akhirnya beriman.'],
+['Zakariya','Sabar berdoa memohon keturunan hingga usia senja, lalu dikaruniai Yahya. Ia juga pengasuh Maryam.'],
+['Yahya','Diberi hikmah sejak kecil, berbakti kepada orang tua, dan dikenal lembut serta bertakwa.'],
+['Isa','Lahir dari Maryam tanpa ayah, berbicara sejak bayi, dan diberi mukjizat dengan izin Allah. Ia menyeru Bani Israil kepada tauhid.'],
+['Muhammad SAW','Lahir di Makkah, menerima wahyu pertama di Gua Hira, berdakwah di Makkah lalu hijrah ke Madinah. Penutup para nabi dan teladan akhlak terbaik.']];
+const ilm=[
+['Ibnu Sina (Avicenna)','Dokter dan filsuf (980-1037 M). Karyanya Al-Qanun fi ath-Thibb menjadi rujukan kedokteran di dunia Islam dan Eropa selama berabad-abad.'],
+['Al-Khawarizmi','Matematikawan (sekitar 780-850 M) yang menulis buku dasar aljabar. Namanya melahirkan istilah "algoritma".'],
+['Ibnu Al-Haytham','Ilmuwan (sekitar 965-1040 M) yang meneliti cahaya dan penglihatan dalam Kitab al-Manazir, serta mengedepankan eksperimen sebagai metode ilmiah.'],
+['Fatimah Al-Fihri (859 M)','Muslimah dermawan dari Fez, Maroko. Dengan warisan keluarganya ia mendirikan Masjid dan Universitas Al-Qarawiyyin pada 859 M, yang diakui sebagai lembaga pendidikan tertinggi tertua yang masih beroperasi.'],
+['Al-Biruni','Polimatik (973-1048 M) di bidang astronomi, geografi, dan sejarah. Ia dikenal menghitung ukuran bumi dan meneliti banyak budaya.'],
+['Jabir bin Hayyan','Tokoh perintis kimia (sekitar abad ke-8) yang dikenal mengembangkan percobaan laboratorium dan proses seperti distilasi.']];
+const sah=[
+['Abu Bakar Ash-Shiddiq','Sahabat terdekat Nabi yang pertama membenarkan peristiwa Isra Mi\'raj. Menemani hijrah ke Madinah dan menjadi khalifah pertama.'],
+['Umar bin Khattab','Bergelar Al-Faruq. Awalnya menentang Islam, lalu masuk Islam dan menjadi khalifah kedua yang tegas, adil, dan sederhana.'],
+['Utsman bin Affan','Dermawan dan pemalu. Membeli sumur Raumah untuk kaum muslimin, dan pada masa kekhalifahannya mushaf Al-Qur\'an disatukan.'],
+['Ali bin Abi Thalib','Sepupu dan menantu Nabi, pemuda pertama yang masuk Islam. Berani, berilmu, dan menjadi khalifah keempat.'],
+['Khadijah binti Khuwailid','Istri pertama Nabi. Menenangkan beliau saat wahyu pertama turun dan mendukung dakwah dengan harta serta jiwanya.'],
+['Aisyah binti Abu Bakar','Istri Nabi yang cerdas. Meriwayatkan banyak hadis dan menjadi tempat bertanya para sahabat.'],
+['Bilal bin Rabah','Bekas budak yang teguh menghadapi siksaan dengan ucapan Ahad, Ahad. Menjadi muadzin pertama dalam Islam.'],
+['Fatimah Az-Zahra','Putri bungsu Nabi, teladan kesederhanaan dan kesabaran, istri Ali dan ibu Hasan serta Husain.'],
+['Abdullah bin Abbas','Sepupu Nabi yang mendapat doa agar dipahamkan agama. Menjadi rujukan tafsir Al-Qur\'an sehingga dijuluki Tinta Umat.'],
+['Khalid bin Walid','Panglima ulung yang mendapat julukan Saifullah (Pedang Allah). Berperan besar dalam banyak pertempuran, termasuk Mu\'tah dan Yarmuk.']];
+const nm=(arr,i)=>`openModal(${JSON.stringify(arr[i][0]).replace(/"/g,'&quot;')},${JSON.stringify('<p>'+arr[i][1]+'</p>').replace(/"/g,'&quot;')})`;
+$('nabiL').innerHTML=nabi.map((n,i)=>`<div onclick="${nm(nabi,i)}" class="${i==24?'card-highlight':'card'} p-3 flex gap-3 items-center cursor-pointer active:scale-[.98] transition"><div class="btn w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0">${i+1}</div><p class="font-bold text-sky-700 flex-1">${n[0]}</p><span class="text-pink-400 text-xs">Buka</span></div>`).join('');
+$('ilmuwanL').innerHTML=ilm.map((n,i)=>`<div onclick="${nm(ilm,i)}" class="${i==3?'card-highlight':'card'} p-4 cursor-pointer active:scale-[.98] transition"><h3 class="font-bold text-sky-700">${n[0]}${i==3?' <span class="text-pink-500 text-xs">&#11088; Sorotan</span>':''}</h3><p class="text-xs text-slate-500 mt-1">${n[1].slice(0,70)}...</p></div>`).join('');
+$('sahabatL').innerHTML=sah.map((n,i)=>`<div onclick="${nm(sah,i)}" class="card p-3 flex gap-3 items-center cursor-pointer active:scale-[.98] transition"><div class="btn w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0">${i+1}</div><p class="font-bold text-sky-700 flex-1">${n[0]}</p><span class="text-pink-400 text-xs">Buka</span></div>`).join('');
+
+const par=[
+['Anak Susah Sholat',['Jadilah teladan: ajak sholat berjamaah di rumah.','Ajak sejak usia 7 tahun dengan lembut, buat suasana menyenangkan.','Beri apresiasi dan hadiah kecil; gunakan ketegasan penuh kasih, bukan kekerasan.'],'HR Abu Dawud: perintahkan anak sholat pada usia 7 tahun.'],
+['Kecanduan Gadget',['Sepakati jam layar dan zona bebas gadget (meja makan, sebelum tidur).','Orang tua ikut menaruh gadget saat bersama anak.','Ganti dengan aktivitas: olahraga, berkuda, berenang, memanah, main bersama.'],'HR Bukhari: banyak manusia rugi karena lalai nikmat sehat dan waktu luang.'],
+['Malas Ngaji',['Mulai dari target kecil: 1 halaman atau 5 menit per hari.','Ngaji bersama keluarga sehabis maghrib.','Pilih guru yang ramah, apresiasi progres, kaitkan dengan kisah nabi.'],"HR Bukhari: sebaik-baik kalian adalah yang belajar Qur'an dan mengajarkannya."]];
+$('parL').innerHTML=par.map((p,i)=>box(p[0],'<ul class="list-disc ml-4 space-y-1">'+p[1].map(s=>'<li>'+s+'</li>').join('')+'</ul><span class="text-pink-500 font-semibold text-xs block mt-2">Dalil: '+p[2]+'</span>',i%2?'card-hl':'card')).join('');
+
+/* HIJRIAH */
+const BH=['Muharram','Safar','Rabiul Awal','Rabiul Akhir','Jumadil Awal','Jumadil Akhir','Rajab','Sya\'ban','Ramadhan','Syawal','Dzulqa\'dah','Dzulhijjah'];
+function hijriInfo(){try{
+  const d=new Date(),F=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric'});
+  const P=x=>{const o={};F.formatToParts(x).forEach(p=>o[p.type]=parseInt(p.value));return o};
+  const t=P(d);let cd='';
+  if(t.month===9)cd='Ramadhan sedang berlangsung: hari ke-'+t.day;
+  else for(let i=1;i<=400;i++){const q=P(new Date(d.getTime()+i*864e5));if(q.month===9&&q.day===1){cd='<b>'+i+' hari lagi</b> menuju 1 Ramadhan '+q.year+' H (perkiraan, menunggu sidang isbat)';break}}
+  $('hijri').innerHTML='<b>'+t.day+' '+BH[t.month-1]+' '+t.year+' H</b> - '+d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'<br>'+cd;
+}catch(e){$('hijri').textContent=new Date().toLocaleDateString('id-ID',{dateStyle:'full'})}}
+hijriInfo();
+
+/* STABILO + TAFSIR */
+function hlGet(){try{return JSON.parse(localStorage.getItem('tq_hl')||'[]')}catch(e){return[]}}
+function isHL(s,a){return hlGet().includes(s+':'+a)}
+function toggleHL(b,s,a){let l=hlGet();const k=s+':'+a;l=l.includes(k)?l.filter(x=>x!==k):[...l,k];try{localStorage.setItem('tq_hl',JSON.stringify(l))}catch(e){}const on=l.includes(k);b.closest('.card').classList.toggle('hlon',on);b.textContent=on?'Hapus stabilo':'Stabilo'}
+const _os=openSurat,tfC={};
+openSurat=function(id){_os(id);loadTafsir(id)};
+function loadTafsir(id){
+  const ap=t=>{let n=0;const iv=setInterval(()=>{const els=$('qdetail').querySelectorAll('.tf');if(els.length||++n>60){clearInterval(iv);els.forEach(e=>{const x=t.find(z=>String(z.ayat)===e.dataset.a);e.textContent=t.length?(x?x.teks:'Tafsir ayat ini tidak tersedia.'):'Tafsir gagal dimuat. Periksa koneksi internet.'})}},250)};
+  if(tfC[id])return ap(tfC[id]);
+  fetch('https://equran.id/api/v2/tafsir/'+id).then(r=>r.json()).then(d=>{tfC[id]=d.data.tafsir;ap(tfC[id])}).catch(()=>ap([]));
+}
+
+/* KONTEN DIPERLUAS (klik untuk baca) */
+const M=[];const mk=(t,h)=>{M.push([t,h]);const i=M.length-1;return 'openModal(M['+i+'][0],M['+i+'][1])'};
+const disc='<p class="mt-3 text-xs text-slate-400">Catatan: informasi umum dan tradisi, bukan pengganti saran dokter.</p>';
+const lesson=t=>'<p class="mt-3 p-3 rounded-xl bg-sky-50 border border-sky-100"><b class="text-pink-500">Pelajaran:</b> '+t+'</p>';
+const tile=(cls,inner,call)=>'<div onclick="'+call+'" class="'+cls+' p-4 cursor-pointer active:scale-[.98] transition">'+inner+'<span class="text-pink-400 text-xs font-semibold">Baca selengkapnya</span></div>';
+
+const apD=[
+['Sumber energi alami, menenangkan tenggorokan, dan kaya antioksidan.','1 sendok makan dalam air hangat di pagi hari. Jangan diberikan kepada bayi di bawah 1 tahun.'],
+['Sering dikonsumsi sebagai suplemen tradisional; banyak diteliti untuk daya tahan tubuh.','Minyak atau serbuk sekitar 1/2 sendok teh, dicampur madu atau air hangat.'],
+['Minyak zaitun kaya lemak sehat; baik untuk masakan, perawatan kulit, dan rambut.','Gunakan extra virgin untuk salad atau tumisan ringan; bisa dioleskan tipis pada kulit.'],
+['Sumber energi dan serat, mudah dimakan saat sahur maupun berbuka.','Sekitar 3 sampai 7 butir di pagi hari, sesuai kebutuhan. Orang dengan gula darah tinggi perlu berhati-hati.'],
+['Menghangatkan tubuh dan membantu meredakan rasa mual.','Seduh irisan jahe dengan air panas, tambah madu. Jangan berlebihan bila lambung sensitif.'],
+['Sumber kalsium dan protein untuk tulang dan tumbuh kembang anak.','Segelas susu hangat; pilih susu segar atau bebas laktosa jika perut sensitif.'],
+['Kaya vitamin C dan antioksidan, segar dan mengenyangkan.','Dimakan langsung atau dijus tanpa gula berlebih.'],
+['Hampir seluruhnya air; menyegarkan dan membantu mencegah dehidrasi.','Makan segar; seimbangkan dengan kurma seperti kebiasaan Nabi.'],
+['Kandungan air tinggi, menyegarkan di cuaca panas.','Dimakan segar, dapat dipadukan kurma seperti riwayat Nabi.']];
+$('apotekL').innerHTML=apotek.map((a,i)=>tile(i%2?'card-hl':'card','<h3 class="font-bold text-sky-700">'+a[0]+'</h3><p class="text-sm text-slate-600 my-1">'+a[1]+'</p>',mk('Apotek Nabi: '+a[0],'<p><b>Dalil:</b> '+a[2]+'</p><p class="mt-2"><b>Manfaat:</b> '+apD[i][0]+'</p><p class="mt-2"><b>Cara konsumsi:</b> '+apD[i][1]+'</p>'+disc))).join('');
+
+const npl=['Setiap manusia bisa khilaf; kuncinya segera bertaubat.','Ilmu dan kesabaran mengangkat derajat.','Teruslah berdakwah dengan sabar walau ditolak.','Kekuatan tanpa iman tidak menyelamatkan.','Jangan menantang peringatan Allah.','Tauhid dan ketaatan total kepada Allah.','Jaga kehormatan diri dan keluarga.','Sabar dan taat sejak muda.','Doa orang tua dijawab pada waktu terbaik.','Sabar yang indah dan berbaik sangka kepada Allah.','Jaga diri, sabar, dan mudah memaafkan.','Sabar dan tak putus berdoa dalam ujian.','Jujur dalam berdagang.','Yakinlah pertolongan Allah saat terdesak.','Saling menolong dalam kebaikan.','Sabar dan amanah walau kisahnya sederhana.','Gunakan kemampuan untuk bersyukur.','Kekayaan tidak boleh membuat sombong.','Berani menyeru kepada tauhid.','Teruskan kebaikan para pendahulu.','Taubat dan doa membuka jalan keluar.','Jangan bosan berdoa; Allah Maha Mendengar.','Berbuat baik sejak muda dan berbakti kepada orang tua.','Kuasa Allah tak terbatas; berdakwahlah dengan lembut.','Ikuti teladan akhlak dan sunnahnya.'];
+$('nabiL').innerHTML=nabi.map((n,i)=>tile(i==24?'card-highlight':'card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+n[0]+'</h3><p class="text-xs text-slate-500 my-1">'+n[1].slice(0,80)+'...</p>',mk('Kisah Nabi '+n[0],'<p>'+n[1]+'</p>'+lesson(npl[i])))).join('');
+
+const sah2=[
+['Sa\'ad bin Abi Waqqash','Salah satu sepuluh sahabat yang dijamin surga. Dikenal sebagai pemanah pertama di jalan Allah, doanya mustajab, dan memimpin pasukan muslimin di Qadisiyyah.'],
+['Zubair bin Awwam','Sepupu Nabi dan sahabat yang dijuluki hawari (penolong setia) Rasulullah. Pemberani di banyak pertempuran dan termasuk yang dijamin surga.'],
+['Mush\'ab bin Umair','Pemuda kaya yang meninggalkan hidup mewah demi Islam. Diutus Nabi sebagai duta dakwah pertama ke Madinah dan gugur sebagai syahid di Uhud.'],
+['Abdurrahman bin Auf','Saudagar yang hijrah tanpa membawa harta lalu sukses berdagang di Madinah. Sangat dermawan dan termasuk yang dijamin surga.'],
+['Abu Hurairah','Menemani Nabi dengan penuh perhatian dan menjadi periwayat hadis terbanyak. Ia dahulu tinggal bersama ahlus shuffah di masjid Nabi.']];
+const spl=['Kejujuran dan keyakinan penuh kepada Nabi.','Tegas dalam kebenaran dan adil.','Dermawan dan malu adalah perhiasan iman.','Berani dan berilmu sejak muda.','Dukungan pasangan menguatkan dakwah.','Ilmu membuat perempuan pun menjadi rujukan.','Keteguhan iman lebih kuat dari siksaan.','Kesederhanaan dan kesabaran.','Ilmu bertumbuh dari doa dan kedekatan pada guru.','Keberanian dan strategi dalam berjuang.','Tinggalkan kemewahan demi tujuan besar.','Kekayaan adalah sarana berbagi.','Berani berkorban untuk agama.','Kesetiaan mendampingi dalam kesulitan.','Cinta ilmu membuat namamu abadi.'];
+const sahAll=[...sah,...sah2];
+document.querySelector('#sahabat h2').textContent=sahAll.length+' Sahabat Teladan';
+$('sahabatL').innerHTML=sahAll.map((n,i)=>tile('card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+n[0]+'</h3><p class="text-xs text-slate-500 my-1">'+n[1].slice(0,80)+'...</p>',mk(n[0],'<p>'+n[1]+'</p>'+lesson(spl[i])))).join('');
+
+const ps=[
+['Anas bin Malik: Pembantu Kecil yang Tidak Pernah Dibentak','Anas melayani Nabi sejak usia 10 tahun selama sekitar 10 tahun. Ia bersaksi bahwa Nabi tidak pernah berkata "ah" kepadanya, dan tidak pernah bertanya "kenapa kamu lakukan ini?" atau "kenapa tidak kamu lakukan itu?" (HR Bukhari dan Muslim).','Anak 10 tahun pasti banyak salah. Nabi memilih diam dan mencontohkan, bukan ceramah panjang.'],
+['Hasan dan Husain: Cucu Dicium di Depan Umum','Seorang Badui melihat Nabi mencium Hasan dan berkata bahwa ia punya sepuluh anak namun tak pernah mencium satu pun. Nabi menjawab: "Siapa yang tidak menyayangi, tidak akan disayangi." (HR Bukhari). Saat Nabi sujud dalam sholat, Hasan pernah naik ke punggung beliau, dan Nabi memanjangkan sujudnya hingga cucunya turun.','Memeluk dan mencium anak adalah sunnah, bukan memanjakan. Anak yang puas bermain akan lebih mudah diajak sholat.'],
+['Lomba Memanah: Nabi Ikut Bersama Anak-anak','Nabi melewati anak-anak yang berlatih memanah dan bersabda, "Panahlah, wahai anak-anak Ismail, sebab leluhur kalian adalah pemanah." Ketika satu kelompok berhenti karena Nabi berpihak pada kelompok lain, beliau bersabda, "Panahlah, aku bersama kalian semua." (HR Bukhari).','Anak butuh dilibatkan, bukan sekadar disuruh. Nabi tidak berkata "belajar sana", melainkan "aku bersama kalian".'],
+['Umamah: Balita Dibawa ke Masjid','Nabi sholat sambil menggendong Umamah, cucu dari putri beliau Zainab. Saat sujud beliau meletakkannya, dan saat berdiri beliau menggendongnya lagi (HR Bukhari dan Muslim).','Masjid zaman Nabi ramah anak. Jangan usir anak yang berisik; ajak mereka pelan-pelan.'],
+['Abdullah bin Abbas: Diajak Doa Sejak Kecil','Ibnu Abbas kecil menginap di rumah bibinya, Maimunah, istri Nabi. Tengah malam ia ikut sholat malam bersama Nabi. Nabi tidak menyuruhnya tidur, dan beliau mendoakannya agar dipahamkan agama. Kelak ia menjadi ulama tafsir terkemuka.','Doakan anak secara spesifik di depan mereka; usapan dan doa menumbuhkan percaya diri.'],
+['Umar bin Abu Salamah: Adab Makan yang Diajarkan Pelan','Umar bin Abu Salamah kecil makan dengan tangan ke mana-mana. Nabi tidak membentak, tetapi berkata, "Nak, sebutlah nama Allah, makan dengan tangan kananmu, dan makanlah yang dekat denganmu." (HR Bukhari dan Muslim).','Satu kesalahan, satu arahan pendek. Jangan berikan lima nasihat sekaligus.']];
+const pOld=par.map(p=>[p[0],'Langkah praktis',null,p]);
+const pl=[];
+ps.forEach(x=>pl.push(tile(pl.length%2?'card-hl':'card','<h3 class="font-bold text-sky-700">'+(pl.length+1)+'. '+x[0]+'</h3><p class="text-xs text-slate-500 my-1">'+x[2]+'</p>',mk(x[0],'<p>'+x[1]+'</p>'+lesson(x[2])))));
+par.forEach(p=>pl.push(tile(pl.length%2?'card-hl':'card','<h3 class="font-bold text-sky-700">'+(pl.length+1)+'. '+p[0]+'</h3><p class="text-xs text-slate-500 my-1">Langkah praktis + dalil</p>',mk(p[0],'<ul class="list-disc ml-4 space-y-1">'+p[1].map(z=>'<li>'+z+'</li>').join('')+'</ul><p class="mt-3 text-pink-500 font-semibold text-xs">Dalil: '+p[2]+'</p>'))));
+pl.push(tile(pl.length%2?'card-hl':'card','<h3 class="font-bold text-sky-700">10. Adil kepada Semua Anak</h3><p class="text-xs text-slate-500 my-1">Kisah Nu\'man bin Basyir</p>',mk('Adil kepada Semua Anak','<p>Ayah Nu\'man bin Basyir ingin memberi hadiah hanya kepadanya dan meminta Nabi menjadi saksi. Nabi bertanya apakah semua anaknya diberi yang sama; ketika tidak, beliau bersabda, "Bertakwalah kepada Allah dan berlaku adillah kepada anak-anakmu." (HR Bukhari dan Muslim).</p>'+lesson('Perlakuan yang adil mencegah iri antar saudara dan menjaga hati anak.'))));
+$('parL').innerHTML=pl.join('');
+
+/* KISAH PANJANG + FYI DIPERLUAS */
+const NL={
+0:'<p>Allah menciptakan Adam dari tanah, meniupkan ruh kepadanya, lalu memerintahkan para malaikat bersujud sebagai penghormatan. Semua sujud kecuali Iblis yang menolak karena sombong. Allah mengajarkan Adam nama-nama segala sesuatu, menunjukkan keutamaan ilmu.</p><p class="mt-2">Adam dan istrinya, Hawa, tinggal di surga dan boleh menikmati apa saja kecuali satu pohon. Iblis membisikkan tipu daya hingga keduanya memakannya dan aurat mereka tampak. Keduanya menyesal dan memohon ampun, lalu Allah menerima taubat mereka.</p><p class="mt-2">Adam kemudian diturunkan ke bumi untuk menjadi khalifah, dan dari keturunannyalah manusia berkembang. <i>Baca: QS Al-Baqarah 30-37, Al-A\'raf 11-25.</i></p>',
+2:'<p>Nuh berdakwah sangat lama, sekitar 950 tahun menurut QS Al-Ankabut: 14. Kaumnya menyembah berhala seperti Wadd, Suwa\', Yaghuts, Ya\'uq, dan Nasr. Pengikutnya sedikit, banyak dari mereka orang lemah, sementara para pembesar mengejeknya.</p><p class="mt-2">Ketika mereka tetap menolak, Allah memerintahkan Nuh membuat bahtera. Kaumnya mencemooh saat ia mengerjakannya. Lalu air memancar dari bumi dan turun dari langit. Nuh menaikkan orang beriman dan sepasang dari tiap jenis makhluk. Putranya menolak naik dan ikut tenggelam.</p><p class="mt-2">Setelah air surut, bahtera berlabuh di gunung Judi. <i>Baca: QS Hud 25-49.</i></p>',
+5:'<p>Ibrahim tumbuh di tengah kaum penyembah berhala, termasuk ayahnya. Ia merenungi bintang, bulan, dan matahari, lalu menyimpulkan bahwa hanya Allah yang berhak disembah. Ia menghancurkan berhala kaumnya kecuali yang terbesar, agar mereka sadar berhala tidak bisa berbuat apa-apa.</p><p class="mt-2">Ia dihukum dibakar, namun Allah menjadikan api itu dingin dan menyelamatkannya. Kemudian ia meninggalkan Hajar dan bayi Ismail di lembah Makkah atas perintah Allah, dan Allah memancarkan Zamzam.</p><p class="mt-2">Saat Ismail remaja, Ibrahim bermimpi menyembelihnya. Keduanya taat, dan Allah menggantinya dengan sembelihan besar. Ibrahim dan Ismail lalu membangun Ka\'bah. <i>Baca: QS Al-An\'am 74-79, Al-Anbiya 51-70, Ash-Shaffat 99-111.</i></p>',
+10:'<p>Yusuf bermimpi melihat sebelas bintang, matahari, dan bulan sujud kepadanya. Saudara-saudaranya iri dan melemparkannya ke sumur. Ia ditemukan kafilah dan dijual di Mesir, lalu dibeli seorang pembesar.</p><p class="mt-2">Ia tumbuh menjadi pemuda tampan dan berakhlak baik. Ketika digoda istri majikannya, ia menolak dengan berlindung kepada Allah. Ia difitnah dan dipenjara, namun tetap berdakwah dan menafsirkan mimpi.</p><p class="mt-2">Ketika raja bermimpi tentang tujuh sapi kurus dan gemuk, Yusuf menafsirkannya sebagai masa subur lalu paceklik. Ia diangkat menjadi pengelola perbendaharaan Mesir. Saat saudara-saudaranya datang meminta bantuan, ia memaafkan mereka dan keluarganya kembali berkumpul. <i>Baca: QS Yusuf (seluruh surat).</i></p>',
+13:'<p>Musa lahir saat Firaun membunuh bayi laki-laki Bani Israil. Ibunya diilhami untuk menghanyutkannya di sungai, dan ia dipungut keluarga Firaun, lalu dikembalikan untuk disusui ibunya sendiri.</p><p class="mt-2">Setelah dewasa, ia tanpa sengaja membunuh seseorang dan pergi ke Madyan. Di sana ia bekerja dan menikah. Dalam perjalanan pulang, ia menerima wahyu di lembah Thuwa dan diutus kepada Firaun dengan mukjizat tongkat dan tangan bercahaya.</p><p class="mt-2">Ia mengalahkan para penyihir Firaun, lalu memimpin Bani Israil keluar dari Mesir. Dikejar Firaun, laut terbelah dengan izin Allah dan Bani Israil selamat. <i>Baca: QS Thaha 9-98, Al-Qashash 3-43.</i></p>',
+24:'<p>Muhammad SAW lahir di Makkah pada tahun Gajah, yatim sejak kecil, dan dikenal jujur dengan julukan Al-Amin. Pada usia 40 tahun beliau menerima wahyu pertama di Gua Hira: "Iqra", bacalah.</p><p class="mt-2">Beliau berdakwah sembunyi-sembunyi kemudian terang-terangan, menghadapi tekanan kaum Quraisy hingga hijrah ke Madinah pada 622 M. Di Madinah beliau membangun masyarakat berdasarkan Piagam Madinah, mempersaudarakan Muhajirin dan Anshar.</p><p class="mt-2">Makkah dibebaskan tanpa pertumpahan darah. Beliau wafat pada 632 M setelah menyempurnakan risalah, meninggalkan Al-Qur\'an dan sunnah sebagai pedoman.</p>'};
+$('nabiL').innerHTML=nabi.map((n,i)=>tile(i==24?'card-highlight':'card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+n[0]+'</h3><p class="text-xs text-slate-500 my-1">'+(NL[i]?'Kisah lengkap tersedia':n[1].slice(0,80)+'...')+'</p>',mk('Kisah Nabi '+n[0],(NL[i]||'<p>'+n[1]+'</p>')+lesson(npl[i])))).join('');
+
+const SL={
+0:'<p>Abu Bakar adalah lelaki dewasa pertama yang masuk Islam dan sahabat paling dekat Nabi. Ia langsung membenarkan peristiwa Isra Mi\'raj, sehingga dijuluki Ash-Shiddiq. Ia menebus dan memerdekakan banyak budak muslim, termasuk Bilal.</p><p class="mt-2">Ia menemani Nabi hijrah dan bersembunyi bersama di Gua Tsur. Setelah Nabi wafat, ia menjadi khalifah pertama dan menjaga persatuan umat, termasuk memerangi kemurtadan dan mengumpulkan Al-Qur\'an.</p>',
+1:'<p>Umar awalnya sangat keras menentang Islam. Ia masuk Islam setelah mendengar bacaan Al-Qur\'an, dan keislamannya menguatkan kaum muslimin sehingga mereka berani beribadah terang-terangan.</p><p class="mt-2">Sebagai khalifah kedua, ia dikenal adil, sederhana, dan sering meronda malam memeriksa rakyatnya. Pada masanya wilayah Islam meluas dan sistem pemerintahan seperti diwan dan kalender Hijriah ditetapkan.</p>',
+4:'<p>Khadijah adalah pedagang mulia yang menikah dengan Nabi sebelum kenabian. Ketika wahyu pertama turun dan Nabi pulang gemetar, ia menenangkan beliau dengan kata-kata penuh keyakinan dan menemaninya bertanya kepada Waraqah bin Naufal.</p><p class="mt-2">Ia wanita pertama yang beriman dan mendukung dakwah dengan hartanya, termasuk saat boikot terhadap kaum muslimin. Nabi mengenangnya dengan cinta sepanjang hidup.</p>',
+6:'<p>Bilal bin Rabah adalah budak dari Habasyah yang masuk Islam lebih awal. Majikannya menyiksanya di padang pasir dengan batu besar di dada, namun ia hanya berkata "Ahad, Ahad" (Allah Maha Esa).</p><p class="mt-2">Abu Bakar membelinya dan memerdekakannya. Suaranya yang merdu membuatnya dipilih Nabi sebagai muadzin pertama. Azan pertama di atas Ka\'bah setelah Fathu Makkah dikumandangkan olehnya.</p>'};
+const sahAll2=sahAll;
+$('sahabatL').innerHTML=sahAll2.map((n,i)=>tile('card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+n[0]+'</h3><p class="text-xs text-slate-500 my-1">'+(SL[i]?'Kisah lengkap tersedia':n[1].slice(0,80)+'...')+'</p>',mk(n[0],(SL[i]||'<p>'+n[1]+'</p>')+lesson(spl[i])))).join('');
+
+const fx=[
+'Ayat ini menyebut langit dan bumi dahulu satu padu (ratq), lalu Allah memisahkannya (fatq). Teori Big Bang menyatakan alam semesta bermula dari keadaan sangat padat dan panas, lalu mengembang. Sebagian ilmuwan muslim melihat kesesuaian, sementara sebagian ulama mengingatkan agar ayat tidak dipaksakan mengikuti teori yang bisa berubah. Pesan utamanya: renungkan penciptaan.',
+'Ayat ini menyebut dua lautan bertemu namun dibatasi sehingga tidak saling melampaui. Para peneliti mengamati pertemuan air dengan salinitas, suhu, dan kerapatan berbeda yang tampak berbatas untuk sementara. Sebagian ulama juga menafsirkannya sebagai air tawar dan asin.',
+'Fatimah Al-Fihri dan saudarinya Maryam berasal dari Qayrawan (Tunisia) dan menetap di Fez, Maroko. Dengan warisan ayahnya, Fatimah membangun masjid Al-Qarawiyyin pada 859 M yang berkembang menjadi pusat ilmu dan universitas. Lembaga ini diakui sebagai universitas tertua yang masih beroperasi. Inspirasi bahwa perempuan muslimah berperan besar dalam ilmu.',
+'Sebagian orang mengaitkan proporsi Ka\'bah dan lokasinya dengan rasio emas atau pusat daratan. Klaim ini populer tetapi tidak berdasarkan dalil dan belum disepakati ilmuwan. Perlakukan sebagai bahan renungan, bukan dalil.',
+'Al-Qur\'an menyebut gunung sebagai awtad (pasak). Ilmu geologi menemukan gunung memiliki akar yang menjulur ke lapisan dalam bumi. Tafsir klasik menekankan fungsi gunung menjaga kestabilan bumi.',
+'Ayat ini menegaskan Allah mampu menyusun kembali ujung jari (banan) manusia yang telah hancur. Sidik jari bersifat unik pada setiap orang sehingga dipakai sebagai identitas. Tafsir klasik menekankan kuasa Allah membangkitkan manusia hingga bagian terkecil.',
+'Besi disebut "diturunkan" bersama kekuatan hebat dan manfaat. Sebagian menafsirkannya sebagai karunia yang diberikan Allah, sebagian menghubungkannya dengan asal besi dari proses di bintang. Pesan pasti ayat ini: besi adalah nikmat untuk membangun peradaban.',
+'Ayat ini menggambarkan tahap nuthfah, alaqah (yang melekat/menggantung), mudghah (segumpal daging), tulang, lalu dibungkus daging. Para ahli embriologi mencatat kesesuaian gambaran tahap perkembangan janin, dan ayat ini mengajak manusia bersyukur atas penciptaannya.',
+'Ayat ini menjelaskan angin menggerakkan awan, Allah membentangkannya di langit, lalu hujan keluar dari celahnya dan menghidupkan bumi yang mati. Ini sejalan dengan siklus air: penguapan, pembentukan awan, dan hujan.',
+'Wahyu kepada lebah agar membuat sarang, memakan berbagai buah, lalu keluar dari perutnya minuman beraneka warna yang mengandung penyembuhan. Madu dibuat lebah pekerja dari nektar bunga; warna dan rasanya beragam sesuai sumber bunganya.'];
+$('fyiL').innerHTML=fyi.map((f,i)=>{
+  const inner='<h3 class="font-bold text-sky-700">'+(i+1)+'. '+f[0]+'</h3><p class="text-xs text-pink-500 font-semibold my-1">'+f[2]+'</p><p class="text-sm text-slate-600">'+f[1]+'</p>';
+  const call=mk(f[0],'<p><b>Rujukan:</b> '+f[2]+'</p><p class="mt-2">'+fx[i]+'</p><p class="mt-3 text-xs text-slate-400">Sebagian poin adalah tafsir ilmiah kontemporer; ulama dan ilmuwan berbeda pandangan.</p>');
+  return i===2?tile('card-highlight relative','<span class="absolute -top-2 -right-2 bg-white border-2 border-pink-300 rounded-full px-2 py-0.5 text-xs font-bold text-pink-500 shadow">&#11088; 859 M</span>'+inner,call):tile('card',inner,call);
+}).join('');
+
+renderJ();show('quran');
+</script>
+</body>
+</html>
