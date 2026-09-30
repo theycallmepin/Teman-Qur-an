@@ -161,11 +161,11 @@ function openSurat(id){
     </div>
     <div class="space-y-3">${s.ayat.map((a,i)=>`<div class="card p-4 ${isHL(s.nomor,a.nomorAyat)?'hlon':''}">
       <div class="flex justify-between items-center mb-1"><span class="w-7 h-7 rounded-full bg-pink-100 text-pink-600 text-xs font-bold flex items-center justify-center">${a.nomorAyat}</span>
-      <div class="flex gap-1"><button onclick="toggleHL(this,${s.nomor},${a.nomorAyat})" class="text-xs px-3 py-1 rounded-lg border border-pink-300 bg-white text-pink-500">${isHL(s.nomor,a.nomorAyat)?'Hapus stabilo':'Stabilo'}</button><button onclick="playAyat(${i})" class="btn text-xs px-3 py-1 rounded-lg">Play</button></div></div>
+      <div class="flex gap-1"><button onclick="toggleHL(this,${s.nomor},${a.nomorAyat})" class="text-lg leading-none px-3 py-1 rounded-lg border border-pink-300 bg-white text-pink-500" aria-label="Inti maksud ayat">${isHL(s.nomor,a.nomorAyat)?'&#9733;':'&#9734;'}</button><button onclick="playAyat(${i})" class="btn text-xs px-3 py-1 rounded-lg">Play</button></div></div>
       <p class="arab text-2xl text-right">${a.teksArab}</p>
       <p class="text-sm text-sky-600 mt-1 italic">${a.teksLatin}</p>
       <p class="text-sm text-slate-600 mt-1">${a.teksIndonesia}</p>
-      <details class="mt-2 rounded-xl bg-sky-50 p-3" open><summary class="text-xs font-bold text-pink-500 cursor-pointer">Inti maksud ayat (tafsir)</summary><p class="tf text-sm text-slate-700 mt-2 leading-relaxed whitespace-pre-line" data-a="${a.nomorAyat}">Memuat tafsir...</p></details></div>`).join('')}</div>`;
+      <div class="tfw ${isHL(s.nomor,a.nomorAyat)?'':'hidden'} mt-2 rounded-xl bg-white/80 border border-pink-200 p-3"><p class="text-xs font-bold text-pink-500">&#9733; Inti maksud ayat</p><p class="tf text-sm text-slate-700 mt-1 leading-relaxed whitespace-pre-line" data-a="${a.nomorAyat}">Memuat tafsir...</p></div></div>`).join('')}</div>`;
     scrollTo(0,0);
   }).catch(()=>{dv.innerHTML='<button onclick="closeSurat()" class="text-pink-500">&larr; Kembali</button><p class="text-pink-500 mt-3">Gagal memuat surat.</p>'});
 }
@@ -345,7 +345,7 @@ hijriInfo();
 /* STABILO + TAFSIR */
 function hlGet(){try{return JSON.parse(localStorage.getItem('tq_hl')||'[]')}catch(e){return[]}}
 function isHL(s,a){return hlGet().includes(s+':'+a)}
-function toggleHL(b,s,a){let l=hlGet();const k=s+':'+a;l=l.includes(k)?l.filter(x=>x!==k):[...l,k];try{localStorage.setItem('tq_hl',JSON.stringify(l))}catch(e){}const on=l.includes(k);b.closest('.card').classList.toggle('hlon',on);b.textContent=on?'Hapus stabilo':'Stabilo'}
+function toggleHL(b,s,a){let l=hlGet();const k=s+':'+a;l=l.includes(k)?l.filter(x=>x!==k):[...l,k];try{localStorage.setItem('tq_hl',JSON.stringify(l))}catch(e){}const on=l.includes(k);const c=b.closest('.card');c.classList.toggle('hlon',on);c.querySelector('.tfw').classList.toggle('hidden',!on);b.innerHTML=on?'&#9733;':'&#9734;'}
 const _os=openSurat,tfC={};
 openSurat=function(id){_os(id);loadTafsir(id)};
 function loadTafsir(id){
@@ -435,7 +435,69 @@ $('fyiL').innerHTML=fyi.map((f,i)=>{
   return i===2?tile('card-highlight relative','<span class="absolute -top-2 -right-2 bg-white border-2 border-pink-300 rounded-full px-2 py-0.5 text-xs font-bold text-pink-500 shadow">&#11088; 859 M</span>'+inner,call):tile('card',inner,call);
 }).join('');
 
-renderJ();show('quran');
+/* V4: BERANDA, MENU BARU, PARENTING */
+document.head.insertAdjacentHTML('beforeend','<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{font-family:Poppins,system-ui,sans-serif}.tile{border-radius:1.5rem;padding:1rem;box-shadow:0 8px 20px rgba(56,189,248,.18);border:1px solid rgba(255,255,255,.9);text-align:left;transition:.2s}.tile:active{transform:scale(.95)}.tile b{display:block;margin-top:.35rem;font-size:.8rem;color:#0369a1}.tile .i{font-size:1.9rem}</style>');
+const MN=[['home','Beranda','\u{1F3E0}'],['quran',"Qur'an",'\u{1F4D6}'],['kiblat','Kiblat','\u{1F9ED}'],['sholat','Sholat & Tasbih','\u{1F54C}'],['ibadah','Tracker Ibadah','\u2705'],['khatam','Khatam Plan','\u{1F3AF}'],['dzikir','Dzikir Pagi Petang','\u{1F305}'],['jurnal','Jurnal','\u{1F4DD}'],['apotek','Apotek Nabi','\u{1F33F}'],['fyi','FYI Sains','\u{1F52C}'],['nabi','25 Nabi','\u{1F319}'],['ilmuwan','Ilmuwan','\u{1F9EA}'],['sahabat','Sahabat','\u{1F91D}'],['parenting','Parenting','\u{1F46A}'],['belajar','Sirah & Video','\u{1F3AC}'],['kitab','Kitab Ulama','\u{1F4DA}'],['dukung','Dukung Web','\u{1F495}']];
+$('nav').innerHTML=MN.map(m=>'<button data-m="'+m[0]+'" onclick="show(\''+m[0]+'\')" class="nb shrink-0 px-3 py-2 rounded-xl text-xs font-semibold">'+m[1]+'</button>').join('');
+const G=['#e0f2fe,#bae6fd','#fce7f3,#fbcfe8','#e0f2fe,#fce7f3'];
+const sec=(id,h)=>'<section id="'+id+'" class="sec hidden">'+h+'</section>';
+const ttl=(t,d)=>'<h2 class="font-bold text-lg">'+t+'</h2><p class="text-xs text-slate-500 mb-3">'+d+'</p>';
+const lnk=(u,t,d)=>'<a href="'+u+'" target="_blank" rel="noopener" class="card p-4 block"><h3 class="font-bold text-sky-700">'+t+'</h3><p class="text-sm text-slate-600 mt-1">'+d+'</p><span class="text-pink-500 text-xs font-semibold">Buka di YouTube &rarr;</span></a>';
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const goS=n=>{show('quran');openSurat(n)};
+document.querySelector('main').insertAdjacentHTML('beforeend',
+ sec('home','<p class="text-center text-sm text-slate-500 mb-3">Pilih menu</p><div class="grid grid-cols-2 gap-3">'+MN.slice(1).map((m,i)=>'<button class="tile" style="background:linear-gradient(135deg,'+G[i%3]+')" onclick="show(\''+m[0]+'\')"><span class="i">'+m[2]+'</span><b>'+m[1]+'</b></button>').join('')+'</div>')+
+ sec('ibadah',ttl('Tracker Ibadah Harian','Centang ibadah yang sudah dikerjakan hari ini.')+'<div id="trk"></div>')+
+ sec('khatam',ttl('Khatam Plan','Rencanakan khatam Al-Qur\'an (mushaf standar 604 halaman, 30 juz).')+'<div id="kh"></div>')+
+ sec('dzikir',ttl('Dzikir Pagi dan Petang','Pagi setelah Subuh, petang setelah Ashar. Ketuk tombol untuk menghitung.')+'<div id="dz" class="space-y-3"></div>')+
+ sec('belajar',ttl('Sirah dan Video Kisah','Tautan membuka pencarian YouTube untuk kanal masing-masing.')+'<div class="space-y-3">'+lnk(yt('kisah nabi kids delight'),'Kisah Nabi - Kids Delight','Kisah para nabi versi anak-anak, cocok ditonton bersama.')+lnk(yt('sirah nabawiyah khalid basalamah'),'Sirah Nabawiyah - Ustadz Khalid Basalamah','Kajian sirah perjalanan hidup Nabi.')+lnk(yt('sirah nabawiyah ustadz elvandi'),'Sirah Nabawiyah - Ustadz Elvandi','Kajian sirah dengan penuturan runtut.')+lnk(yt('sirah nabawiyah ustadz firanda'),'Sirah Nabawiyah - Ustadz Firanda','Kajian sirah lengkap per periode.')+'</div>')+
+ sec('kitab',ttl('Kitab Ulama','Ketuk kartu untuk ringkasan dan cara belajar.')+'<div class="space-y-3">'+
+  [['Riyadus Shalihin','Karya Imam An-Nawawi: kumpulan hadis pilihan tentang akhlak, adab, ibadah, dan keutamaan amal, disusun per bab. Cara belajar: 1 hadis per hari lalu amalkan satu pelajaran.','riyadus shalihin'],
+   ['Minhajul Muslim','Karya Syaikh Abu Bakar Jabir Al-Jazairi: pedoman ringkas seorang muslim mencakup akidah, adab, akhlak, ibadah, dan muamalah. Cocok dibaca bertahap oleh keluarga.','minhajul muslim'],
+   ['Fiqih Wanita','Topik yang biasa dipelajari: thaharah, haid-nifas-istihadhah, sholat wanita, aurat dan hijab, puasa, serta adab dalam rumah tangga. Belajarlah dari ustadzah atau ustadz terpercaya dan rujuk kitab yang jelas.','fiqih wanita']].map(k=>'<div onclick="'+mk(k[0],'<p>'+k[1]+'</p><a class=\'btn inline-block mt-3 px-4 py-2 rounded-xl text-xs font-semibold\' target=\'_blank\' rel=\'noopener\' href=\''+yt('kajian '+k[2])+'\'>Cari kajian di YouTube</a>')+'" class="card p-4 cursor-pointer"><h3 class="font-bold text-sky-700">'+k[0]+'</h3><span class="text-pink-400 text-xs font-semibold">Baca selengkapnya</span></div>').join('')+'</div>')+
+ sec('dukung',ttl('Dukung Web Ini','Web ini gratis. Jika ingin berdonasi untuk biaya pengembangan dan hosting, silakan scan QR di bawah. Jazakumullahu khairan.')+'<div class="card-highlight p-5 text-center"><img src="qris.png" alt="QR donasi" class="mx-auto max-w-[260px] w-full rounded-2xl bg-white" onerror="this.outerHTML=\'<div class=&quot;bg-white/80 rounded-2xl p-6 text-sm text-slate-600&quot;>QR belum dipasang.<br>Upload gambar QR dengan nama <b>qris.png</b> ke repositori (sejajar index.html).</div>\'"><p class="mt-3 text-sm text-slate-600">Scan dengan aplikasi bank atau e-wallet.</p></div>'));
+
+/* Tracker */
+const FR=['Subuh','Dzuhur','Ashar','Maghrib','Isya'],SN=['Rawatib','Dhuha','Tahajud','Witir','Puasa sunnah','Sedekah'];
+const dk=d=>d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+function trkGet(){try{return JSON.parse(localStorage.getItem('tq_trk')||'{}')}catch(e){return{}}}
+function trkT(k){const o=trkGet(),t=dk(new Date());o[t]=o[t]||[];const i=o[t].indexOf(k);i<0?o[t].push(k):o[t].splice(i,1);try{localStorage.setItem('tq_trk',JSON.stringify(o))}catch(e){}renderTrk()}
+function renderTrk(){
+  const o=trkGet(),t=o[dk(new Date())]||[];
+  const chip=(k,l)=>'<button onclick="trkT(\''+k+'\')" class="px-4 py-2 rounded-xl text-sm font-semibold '+(t.includes(k)?'btn shadow':'bg-white border border-sky-200 text-slate-500')+'">'+l+'</button>';
+  let wk='';for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*864e5),a=o[dk(d)]||[],n=FR.filter(f=>a.includes(f)).length;wk+='<div class="flex-1 text-center"><div class="h-16 flex items-end justify-center"><div class="w-4 rounded-t bg-gradient-to-t from-sky-400 to-pink-400" style="height:'+n*20+'%"></div></div><p class="text-[10px] text-slate-500">'+d.toLocaleDateString('id-ID',{weekday:'short'})+'</p><p class="text-[10px] font-bold text-sky-600">'+n+'/5</p></div>'}
+  $('trk').innerHTML='<div class="card p-4"><p class="font-bold text-sky-700 mb-2">Sholat fardhu ('+FR.filter(f=>t.includes(f)).length+'/5)</p><div class="flex flex-wrap gap-2">'+FR.map(f=>chip(f,f)).join('')+'</div></div><div class="card-hl p-4 mt-3"><p class="font-bold text-sky-700 mb-2">Ibadah sunnah</p><div class="flex flex-wrap gap-2">'+SN.map(f=>chip('s:'+f,f)).join('')+'</div></div><div class="card p-4 mt-3"><p class="font-bold text-sky-700 mb-2">7 hari terakhir (fardhu)</p><div class="flex gap-1">'+wk+'</div></div>';
+}
+/* Khatam */
+let khD=30,khS=[];try{khS=JSON.parse(localStorage.getItem('tq_kh')||'[]');khD=+localStorage.getItem('tq_khd')||30}catch(e){}
+function khSave(){try{localStorage.setItem('tq_kh',JSON.stringify(khS));localStorage.setItem('tq_khd',khD)}catch(e){}}
+function khT(j){khS=khS.includes(j)?khS.filter(x=>x!==j):[...khS,j];khSave();renderKh()}
+function renderKh(){
+  const pct=Math.round(khS.length/30*100);
+  $('kh').innerHTML='<div class="card p-4"><label class="text-sm">Target khatam dalam</label><input type="number" min="1" max="365" value="'+khD+'" onchange="khD=Math.max(1,+this.value||30);khSave();renderKh()" class="w-20 mx-2 px-2 py-1 rounded-lg border border-sky-200 text-center"> hari<p class="text-sm mt-3">Sekitar <b>'+(30/khD).toFixed(1)+' juz</b> atau <b>'+Math.ceil(604/khD)+' halaman</b> per hari, kira-kira <b>'+Math.ceil(604/khD/5)+' halaman</b> setelah tiap sholat fardhu.</p></div><div class="mt-3 h-3 rounded-full bg-white overflow-hidden"><div class="h-full bg-gradient-to-r from-sky-400 to-pink-400" style="width:'+pct+'%"></div></div><p class="text-xs text-slate-500 mt-1">'+khS.length+'/30 juz selesai ('+pct+'%)</p><div class="grid grid-cols-6 gap-2 mt-3">'+Array.from({length:30},(_,i)=>i+1).map(j=>'<button onclick="khT('+j+')" class="py-2 rounded-xl text-sm font-semibold '+(khS.includes(j)?'btn shadow':'bg-white border border-sky-200 text-slate-500')+'">'+j+'</button>').join('')+'</div><button onclick="if(confirm(\'Ulangi dari awal?\')){khS=[];khSave();renderKh()}" class="mt-3 text-xs text-pink-500 underline">Ulangi dari awal</button>';
+}
+/* Dzikir */
+const DZ=[
+['Ayat Kursi','QS Al-Baqarah: 255','Dibaca sekali pagi dan petang. Teks lengkap ada di menu Qur\'an.','Hadis sahih',1,2],
+['Al-Ikhlas, Al-Falaq, An-Nas','QS 112, 113, 114','Masing-masing tiga kali, pagi dan petang.','HR Abu Dawud, Tirmidzi',3,112],
+['Bismillahilladzi laa yadhurru ma\'asmihi syai\'un fil ardhi wa laa fis samaa\'i wa huwas samii\'ul \'aliim','','Dengan nama Allah yang bersama nama-Nya tidak ada sesuatu pun di bumi dan di langit yang dapat membahayakan, dan Dia Maha Mendengar lagi Maha Mengetahui.','HR Abu Dawud, Tirmidzi',3,0],
+['Sayyidul Istighfar','','Allahumma anta rabbi laa ilaaha illaa anta, khalaqtanii wa ana \'abduka, wa ana \'alaa \'ahdika wa wa\'dika mastatha\'tu, a\'uudzu bika min syarri maa shana\'tu, abuu\'u laka bini\'matika \'alayya, wa abuu\'u bidzanbii faghfirlii fa innahu laa yaghfirudz dzunuuba illaa anta. (Ya Allah, Engkau Tuhanku, tiada Tuhan selain Engkau. Engkau menciptakanku dan aku hamba-Mu. Aku berpegang pada janji-Mu semampuku. Aku berlindung dari keburukan perbuatanku, mengakui nikmat-Mu dan dosaku, maka ampunilah aku, sebab tiada yang mengampuni dosa selain Engkau.)','HR Bukhari',1,0],
+['Radhiitu billaahi rabbaa, wa bil islaami diinaa, wa bi muhammadin nabiyyaa','','Aku ridha Allah sebagai Tuhan, Islam sebagai agama, dan Muhammad sebagai nabi.','HR Abu Dawud, Tirmidzi',3,0],
+['Subhaanallaahi wa bihamdih','','Maha Suci Allah dan segala puji bagi-Nya.','HR Muslim',100,0],
+['Laa ilaaha illallaahu wahdahu laa syariikalah, lahul mulku wa lahul hamdu wa huwa \'alaa kulli syai\'in qadiir','','Tiada Tuhan selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Maha Kuasa atas segala sesuatu.','Hadis sahih',10,0]];
+const dzc=[];
+function dzT(i){dzc[i]=(dzc[i]||0)+1;if(dzc[i]>DZ[i][4])dzc[i]=0;navigator.vibrate&&navigator.vibrate(12);renderDz()}
+function renderDz(){$('dz').innerHTML=DZ.map((d,i)=>'<div class="'+(i%2?'card-hl':'card')+' p-4"><h3 class="font-bold text-sky-700 text-sm">'+(i+1)+'. '+d[0]+'</h3>'+(d[1]?'<p class="text-xs text-pink-500 font-semibold">'+d[1]+'</p>':'')+'<p class="text-sm text-slate-600 mt-1">'+d[2]+'</p><p class="text-xs text-slate-400 mt-1">'+d[3]+'</p><div class="flex gap-2 mt-3"><button onclick="dzT('+i+')" class="btn px-5 py-2 rounded-xl text-sm font-semibold shadow">Ketuk ('+(dzc[i]||0)+'/'+d[4]+')</button>'+(d[5]?'<button onclick="goS('+d[5]+')" class="px-4 py-2 rounded-xl text-sm border border-pink-300 bg-white text-pink-500">Buka teks Arab</button>':'')+'</div></div>').join('')}
+
+/* Parenting: 10 kisah zaman Nabi */
+const ps3=[
+['Anak Susah Sholat: Anas dan Anak Yatim di Belakang Nabi','Nabi sholat di rumah Anas bersama Anas dan seorang anak yatim yang berdiri di belakang beliau, sementara ibu Anas berdiri di belakang mereka (HR Bukhari dan Muslim). Anak-anak diajak sholat langsung, tanpa ceramah panjang.','Ajak anak sholat berdampingan dengan orang tua. Perintah sholat sejak usia 7 tahun (HR Abu Dawud) dijalankan lewat kebersamaan dan teladan, bukan tekanan.'],
+['Kecanduan Gadget: Nabi Bercanda dengan Abu Umair','Anas punya adik kecil bernama Abu Umair, putra Abu Thalhah dan Ummu Sulaim, yang bermain dengan burung kecil. Nabi menyapanya dengan hangat dan bercanda menanyakan kabar si burung (HR Bukhari dan Muslim).','Anak yang diajak berinteraksi hangat tidak mudah lari ke layar. Sediakan waktu bermain dan ngobrol nyata, sepakati batas layar, dan ganti dengan aktivitas seru bersama.'],
+['Malas Ngaji: Zaid Muda Diberi Target dan Kepercayaan','Nabi memerintahkan Zaid bin Tsabit yang masih muda mempelajari tulisan bahasa lain, dan Zaid menguasainya dalam waktu singkat (HR Tirmidzi). Nabi memberi target jelas sekaligus kepercayaan.','Beri target kecil yang jelas dan apresiasi kemajuannya. Nabi bersabda, "Sebaik-baik kalian adalah yang belajar Al-Qur\'an dan mengajarkannya." (HR Bukhari).']];
+const ps4=[...ps.slice(0,6),...ps3,['Adil kepada Semua Anak: Kisah Nu\'man bin Basyir','Ayah Nu\'man ingin memberi hadiah hanya kepada Nu\'man dan meminta Nabi menjadi saksi. Nabi bertanya apakah semua anaknya diberi yang sama; ketika tidak, beliau bersabda, "Bertakwalah kepada Allah dan berlaku adillah kepada anak-anakmu." (HR Bukhari dan Muslim).','Perlakuan yang adil mencegah iri antar saudara dan menjaga hati anak.']];
+$('parL').innerHTML=ps4.map((x,i)=>tile(i%2?'card-hl':'card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+x[0]+'</h3><p class="text-xs text-slate-500 my-1">'+x[2].slice(0,80)+'...</p>',mk(x[0],'<p>'+x[1]+'</p>'+lesson(x[2]).replace('Pelajaran:','Pelajaran Parenting:')))).join('');
+
+renderTrk();renderKh();renderDz();renderJ();show('home');
 </script>
 </body>
 </html>
