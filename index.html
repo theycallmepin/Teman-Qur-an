@@ -810,6 +810,155 @@ d:`Allahumma shalli 'ala Muhammad wa 'ala ali Muhammad (Ya Allah, limpahkan shol
 t:`Bershalawat 10 kali, lalu sebutkan satu akhlak Nabi yang ingin kamu tiru.`}});
 renderNabi();
 
+/* V12: OFFLINE + KISAH SAHABAT FORMAT FINAL */
+if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+async function saveOffline(a,b){const st=$('offst');let ok=0;try{await fetch('https://equran.id/api/v2/surat');for(let i=a;i<=b;i++){st.textContent='Menyimpan surat '+i+' dari '+b+'...';await fetch('https://equran.id/api/v2/surat/'+i);await fetch('https://equran.id/api/v2/tafsir/'+i);ok++}st.textContent='Selesai: '+ok+' surat tersimpan untuk dibaca offline.'}catch(e){st.textContent='Terhenti. Pastikan internet aktif, lalu ulangi.'}}
+function saveAll(){if(confirm('Menyimpan seluruh 114 surat memakai kuota cukup banyak. Lanjutkan?'))saveOffline(1,114)}
+$('home').insertAdjacentHTML('beforeend','<div class="card p-4 mt-4"><h3 class="font-bold text-sky-700">Baca Offline</h3><p class="text-xs text-slate-500 mt-1">Buka web ini sekali dengan internet, lalu simpan Qur\'an agar teks Arab, terjemah, dan tafsir bisa dibaca tanpa internet. Audio belum bisa offline.</p><div class="flex gap-2 mt-3"><button onclick="saveOffline(78,114)" class="btn px-3 py-2 rounded-xl text-xs font-semibold">Simpan Juz 30</button><button onclick="saveAll()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-sky-200 text-sky-600">Simpan semua surat</button></div><p id="offst" class="text-xs text-pink-500 mt-2"></p></div>');
+
+const SF={
+0:{p:`Tahukah Teman Qur'an tentang sahabat yang menemani Rasulullah di dalam gua saat dikejar musuh?`,
+k:[`Abu Bakar bin Abi Quhafah adalah pedagang jujur dari Makkah, dan sahabat terdekat Rasulullah sejak sebelum kenabian. Ketika Rasulullah mengabarkan peristiwa Isra Mi'raj dan kaum Quraisy mengejek, mereka berkata kepada Abu Bakar, "Temanmu mengaku semalam pergi ke Baitul Maqdis!" Abu Bakar menjawab, "Jika memang beliau yang mengatakannya, maka itu benar." Karena itulah ia dijuluki Ash-Shiddiq, orang yang sangat membenarkan.`,
+`Ia menggunakan hartanya untuk memerdekakan budak-budak muslim yang disiksa, termasuk Bilal. Saat Allah memerintahkan hijrah, Rasulullah memilih Abu Bakar sebagai teman perjalanan. Mereka bersembunyi tiga hari di Gua Tsur. Pasukan Quraisy tiba di dekat mulut gua. Abu Bakar berbisik cemas, "Wahai Rasulullah, andai salah seorang dari mereka melihat ke bawah kakinya, pasti ia melihat kita." Rasulullah menenangkan, "Wahai Abu Bakar, bagaimana pendapatmu tentang dua orang yang Allah adalah yang ketiganya?" (HR Bukhari dan Muslim)`,
+`Saat Perang Tabuk, Rasulullah mengajak para sahabat bersedekah. Abu Bakar datang membawa seluruh hartanya. "Apa yang kamu sisakan untuk keluargamu?" tanya Rasulullah. Ia menjawab, "Aku tinggalkan Allah dan Rasul-Nya untuk mereka." Setelah Rasulullah wafat, Abu Bakar menjadi khalifah pertama dan menjaga persatuan umat. Pada masanya Al-Qur'an dikumpulkan dalam satu mushaf.`],
+a:`QS At-Taubah: 40. Ketika dia berkata kepada temannya, "Janganlah engkau bersedih, sesungguhnya Allah bersama kita."`,
+h:[`Percaya kepada kebenaran dan berani membelanya`,`Persahabatan sejati: menemani saat sulit`,`Berinfak dengan penuh keyakinan kepada Allah`],
+d:`La tahzan innallaha ma'ana (Jangan bersedih, sesungguhnya Allah bersama kita).`,
+t:`Tulis nama satu sahabat baikmu, lalu bantu ia hari ini dengan satu kebaikan.`},
+1:{p:`Tahukah Teman Qur'an tentang pemuda gagah yang berniat melawan Rasulullah, tetapi berubah setelah mendengar ayat Al-Qur'an?`,
+k:[`Umar bin Khattab berasal dari Bani Adi di Makkah. Ia bertubuh kuat dan dikenal keras. Suatu hari ia keluar membawa pedang untuk mencari Rasulullah. Di jalan seseorang berkata, "Urus dulu keluargamu. Adikmu Fathimah dan suaminya sudah masuk Islam."`,
+`Umar bergegas ke rumah adiknya. Dari luar terdengar bacaan Al-Qur'an. Begitu masuk, mereka menyembunyikan lembaran bacaan. Umar marah dan memukul suami adiknya. Fathimah membela suaminya dan darah mengalir dari wajahnya. Ia berkata tegas, "Lakukan apa yang kau mau, kami telah masuk Islam!" Umar menyesal melihat darah itu dan berkata, "Berikan kepadaku lembaran tadi." Ia membaca awal surat Thaha, lalu berkata, "Alangkah indahnya ucapan ini!"`,
+`Umar menemui Rasulullah dan menyatakan masuk Islam. Kaum muslimin bertakbir gembira, dan sejak itu mereka berani beribadah terang-terangan. Setelah menjadi khalifah, Umar sering meronda malam. Suatu malam ia mendapati seorang ibu memasak batu agar anak-anaknya mengira ia sedang memasak makanan. Umar segera memanggul sekarung gandum dan membawanya sendiri. Kisah ini diriwayatkan dalam kitab sejarah.`],
+a:`QS Thaha: 1-2. Thaha. Kami tidak menurunkan Al-Qur'an ini kepadamu agar kamu menjadi susah.`,
+h:[`Hati bisa berubah dengan hidayah Allah`,`Pemimpin yang baik peduli pada rakyat kecil`,`Berani minta maaf dan memperbaiki diri`],
+d:`Rabbana la tuzigh qulubana ba'da idz hadaitana (Ya Tuhan kami, jangan palingkan hati kami setelah Engkau beri petunjuk).`,
+t:`Baca QS Thaha ayat 1-8 bersama arti, lalu ceritakan perasaanmu saat membacanya.`},
+2:{p:`Tahukah Teman Qur'an tentang sahabat dermawan yang dijuluki Dzun Nurain, pemilik dua cahaya?`,
+k:[`Utsman bin Affan adalah pedagang kaya dari Bani Umayyah yang sangat pemalu. Ia dijuluki Dzun Nurain, karena menikahi dua putri Rasulullah secara berurutan, yaitu Ruqayyah dan Ummu Kultsum. Ia ikut hijrah ke negeri Habasyah, lalu ke Madinah.`,
+`Di Madinah, kaum muslimin kesulitan air bersih. Satu-satunya sumur milik seorang Yahudi bernama Raumah, dan airnya dijual mahal. Rasulullah bersabda, "Siapa yang membeli sumur Raumah, lalu menjadikan embernya seperti ember kaum muslimin, ia akan mendapat balasan yang lebih baik di surga." (HR Tirmidzi). Utsman segera membelinya dan mewakafkannya.`,
+`Saat Perang Tabuk, pasukan muslimin sangat membutuhkan perbekalan. Utsman menyumbang 300 unta lengkap dengan pelananya. Rasulullah bersabda, "Tidak akan membahayakan Utsman apa pun yang ia lakukan setelah hari ini." Rasulullah juga bersabda, "Tidakkah aku malu kepada orang yang malaikat pun malu kepadanya?" (HR Muslim). Saat menjadi khalifah ketiga, ia menyatukan mushaf Al-Qur'an dan mengirimkannya ke berbagai wilayah.`],
+a:`QS Al-Baqarah: 261. Perumpamaan orang yang menginfakkan hartanya di jalan Allah seperti sebutir benih yang menumbuhkan tujuh tangkai.`,
+h:[`Malu adalah bagian dari iman`,`Hartamu paling berharga bila dipakai untuk menolong`,`Wakaf: kebaikan yang terus mengalir`],
+d:`Rabbana taqabbal minna innaka antas sami'ul 'alim (Ya Tuhan kami, terimalah amal kami).`,
+t:`Sisihkan sebagian uang jajan ke celengan sedekah, lalu sumbangkan setiap pekan.`},
+3:{p:`Tahukah Teman Qur'an tentang anak muda yang tidur di kasur Rasulullah saat para musuh mengepung rumah?`,
+k:[`Ali bin Abi Thalib adalah putra Abu Thalib, paman Rasulullah. Sejak kecil ia diasuh Rasulullah, dan menjadi salah satu orang pertama yang masuk Islam. Ketika kaum Quraisy mengepung rumah Rasulullah untuk membunuhnya, Rasulullah berkata kepada Ali, "Tidurlah di tempat tidurku dan pakailah selimutku. Tidak akan ada yang menyakitimu." Ali tidur dengan tenang, dan Rasulullah keluar menuju Madinah. Ali juga ditugaskan mengembalikan semua barang titipan orang kepada pemiliknya.`,
+`Pada Perang Khaibar, pasukan muslimin belum berhasil menaklukkan benteng. Rasulullah bersabda, "Besok akan kuberikan bendera kepada seorang yang dicintai Allah dan Rasul-Nya, dan Allah memberi kemenangan lewat tangannya." Semua sahabat berharap. Pagi harinya Rasulullah bertanya, "Di mana Ali?" Dijawab, "Matanya sakit." Rasulullah mengusap mata Ali dengan ludahnya, dan matanya sembuh seketika.`,
+`Rasulullah menyerahkan bendera itu. Ali bertanya, "Apakah aku perangi mereka sampai mereka menjadi seperti kita?" Rasulullah menjawab, "Pergilah dengan tenang, ajaklah mereka kepada Islam. Demi Allah, satu orang diberi petunjuk Allah lewat dirimu lebih baik bagimu daripada unta merah." (HR Bukhari dan Muslim). Ali dikenal pemberani, cerdas, dan rendah hati. Kelak ia menjadi khalifah keempat.`],
+a:`QS Al-Insan: 8-9. Mereka memberi makan orang miskin, anak yatim, dan tawanan karena mengharap wajah Allah.`,
+h:[`Berani dan amanah dalam tugas`,`Berdakwah dengan hikmah, bukan kekerasan`,`Rendah hati meskipun hebat`],
+d:`Hasbunallah wa ni'mal wakil (Cukuplah Allah bagiku, sebaik-baik pelindung).`,
+t:`Kembalikan barang teman yang kamu pinjam, lalu ucapkan terima kasih.`},
+6:{p:`Tahukah Teman Qur'an tentang sahabat yang suara sandalnya terdengar di surga?`,
+k:[`Bilal bin Rabah berasal dari Habasyah (Ethiopia) dan menjadi budak di Makkah milik Umayyah bin Khalaf. Ketika Bilal masuk Islam, majikannya menyiksanya dengan sangat kejam. Di padang pasir yang panas, batu besar diletakkan di dadanya. Tetapi Bilal hanya berkata, "Ahad, ahad," Allah Maha Esa. Abu Bakar kemudian membelinya dan memerdekakannya.`,
+`Setelah hijrah ke Madinah, kaum muslimin ingin cara memanggil sholat. Seorang sahabat bermimpi tentang azan, lalu Rasulullah bersabda, "Berdirilah wahai Bilal, serukan azan." Suara Bilal yang merdu dan lantang menjadi muadzin pertama dalam Islam. Saat Fathu Makkah, Bilal naik ke atas Ka'bah dan mengumandangkan azan.`,
+`Suatu pagi Rasulullah bertanya, "Wahai Bilal, ceritakan amalan paling engkau harapkan pahalanya dalam Islam, sebab aku mendengar suara sandalmu di depanku di surga." Bilal menjawab, "Aku tidak pernah bersuci pada waktu malam atau siang kecuali aku sholat dengan wudhu itu sebanyak yang Allah tuliskan untukku." (HR Bukhari dan Muslim).`],
+a:`QS Al-Ikhlas: 1. Katakanlah, "Dialah Allah, Yang Maha Esa."`,
+h:[`Iman yang kuat tidak goyah oleh siksaan`,`Semua manusia setara, bukan karena warna kulit atau asal`,`Menjaga wudhu dan sholat sunnah setelahnya`],
+d:`Allahumma rabba hadzihid da'watit tammah, washshalatil qa'imah, ati Muhammadanil wasilata wal fadhilah (Doa setelah azan).`,
+t:`Hafalkan doa setelah azan dan baca setiap kali mendengar azan.`}};
+function renderSahabat(){$('sahabatL').innerHTML=sahAll.map((n,i)=>tile('card','<h3 class="font-bold text-sky-700">'+(i+1)+'. '+n[0]+'</h3><p class="text-xs text-slate-500 my-1">'+(SF[i]?'Format lengkap: '+SF[i].p.slice(0,60)+'...':SL[i]?'Kisah lengkap tersedia':n[1].slice(0,80)+'...')+'</p>',mk(n[0],SF[i]?nfH(SF[i]):(SL[i]||'<p>'+n[1]+'</p>')+lesson(spl[i])))).join('')}
+renderSahabat();
+
+/* V13: MENU BARU + AYAT HARI INI + SAHABAT 2 */
+const NM=[['asma','Asmaul Husna','\u2728'],['hafalan','Hafalan & Murajaah','\u{1F4D8}'],['puasa','Puasa Sunnah','\u{1F4C5}'],['arbain',"Hadis Arba'in",'\u{1F4DC}']];
+NM.forEach(m=>{MN.push(m);const i=MN.length-2;document.querySelector('#home .grid').insertAdjacentHTML('beforeend','<button class="tile" style="background:linear-gradient(135deg,'+G[i%3]+')" onclick="show(\''+m[0]+'\')"><span class="i">'+m[2]+'</span><b>'+m[1]+'</b></button>');$('mm').firstElementChild.insertAdjacentHTML('beforeend','<button onclick="show(\''+m[0]+'\')" class="rounded-xl bg-white/80 border border-sky-100 p-2 text-[11px] font-semibold text-sky-700"><span class="block text-xl">'+m[2]+'</span>'+m[1]+'</button>')});
+document.querySelector('main').insertAdjacentHTML('beforeend',
+ sec('asma',ttl('Asmaul Husna','Ketuk nama untuk menandai yang sudah hafal. Daftar mengikuti riwayat umum; ada penyusunan yang sedikit berbeda.')+'<p id="asc" class="text-xs text-pink-500 mb-2"></p><div id="asl" class="grid grid-cols-2 gap-2"></div>')+
+ sec('hafalan',ttl('Hafalan dan Murajaah','Catat hafalanmu, lalu tandai saat sudah murajaah. Yang lebih dari 7 hari akan diberi penanda.')+'<div class="card p-4"><input id="hfs" placeholder="Surat dan ayat (mis. Al-Mulk 1-10)" class="w-full mb-2 px-3 py-2 rounded-xl border border-sky-200 bg-white/90"><select id="hfst" class="w-full mb-2 px-3 py-2 rounded-xl border border-sky-200 bg-white/90"><option>Baru dihafal</option><option>Lancar</option><option>Perlu diulang</option></select><button onclick="hfAdd()" class="btn w-full py-2 rounded-xl font-semibold">Tambah</button></div><div id="hfl" class="space-y-2 mt-3"></div>')+
+ sec('puasa',ttl('Kalender Puasa Sunnah','45 hari ke depan berdasarkan kalender Hijriah (perkiraan Umm al-Qura; bisa selisih satu hari dengan penetapan Kemenag).')+'<div id="psl" class="space-y-2"></div>')+
+ sec('arbain',ttl("Hadis Arba'in (Pilihan)",'Ringkasan makna hadis Arba\'in Imam An-Nawawi. Nomor mengikuti kitab; rujuk teks Arabnya dan ustadz untuk penjelasan lengkap.')+'<div id="abl" class="space-y-2"></div>'));
+const AS='Ar-Rahman|Maha Pengasih;Ar-Rahim|Maha Penyayang;Al-Malik|Maha Merajai;Al-Quddus|Maha Suci;As-Salam|Maha Memberi Keselamatan;Al-Mu\'min|Maha Memberi Keamanan;Al-Muhaymin|Maha Memelihara;Al-\'Aziz|Maha Perkasa;Al-Jabbar|Maha Kuasa;Al-Mutakabbir|Maha Megah;Al-Khaliq|Maha Pencipta;Al-Bari\'|Maha Mengadakan;Al-Mushawwir|Maha Membentuk Rupa;Al-Ghaffar|Maha Pengampun;Al-Qahhar|Maha Menundukkan;Al-Wahhab|Maha Pemberi Karunia;Ar-Razzaq|Maha Pemberi Rezeki;Al-Fattah|Maha Pembuka;Al-\'Alim|Maha Mengetahui;Al-Qabidh|Maha Menyempitkan;Al-Basith|Maha Melapangkan;Al-Khafidh|Maha Merendahkan;Ar-Rafi\'|Maha Meninggikan;Al-Mu\'izz|Maha Memuliakan;Al-Mudzill|Maha Menghinakan;As-Sami\'|Maha Mendengar;Al-Bashir|Maha Melihat;Al-Hakam|Maha Menetapkan Hukum;Al-\'Adl|Maha Adil;Al-Lathif|Maha Lembut;Al-Khabir|Maha Mengetahui Rahasia;Al-Halim|Maha Penyantun;Al-\'Azhim|Maha Agung;Al-Ghafur|Maha Pengampun;Asy-Syakur|Maha Mensyukuri;Al-\'Aliyy|Maha Tinggi;Al-Kabir|Maha Besar;Al-Hafizh|Maha Memelihara;Al-Muqit|Maha Pemberi Kecukupan;Al-Hasib|Maha Menghitung;Al-Jalil|Maha Mulia;Al-Karim|Maha Pemurah;Ar-Raqib|Maha Mengawasi;Al-Mujib|Maha Mengabulkan;Al-Wasi\'|Maha Luas;Al-Hakim|Maha Bijaksana;Al-Wadud|Maha Pencinta;Al-Majid|Maha Mulia;Al-Ba\'its|Maha Membangkitkan;Asy-Syahid|Maha Menyaksikan;Al-Haqq|Maha Benar;Al-Wakil|Maha Pemelihara Urusan;Al-Qawiyy|Maha Kuat;Al-Matin|Maha Kokoh;Al-Waliyy|Maha Melindungi;Al-Hamid|Maha Terpuji;Al-Mushi|Maha Menghitung;Al-Mubdi\'|Maha Memulai;Al-Mu\'id|Maha Mengembalikan;Al-Muhyi|Maha Menghidupkan;Al-Mumit|Maha Mematikan;Al-Hayy|Maha Hidup;Al-Qayyum|Maha Berdiri Sendiri;Al-Wajid|Maha Menemukan;Al-Maajid|Maha Mulia lagi Pemurah;Al-Wahid|Maha Esa;Al-Ahad|Maha Tunggal;Ash-Shamad|Maha Dibutuhkan;Al-Qadir|Maha Berkuasa;Al-Muqtadir|Maha Menentukan;Al-Muqaddim|Maha Mendahulukan;Al-Mu\'akhkhir|Maha Mengakhirkan;Al-Awwal|Maha Awal;Al-Akhir|Maha Akhir;Azh-Zhahir|Maha Nyata;Al-Bathin|Maha Tersembunyi;Al-Wali|Maha Memimpin;Al-Muta\'ali|Maha Tinggi;Al-Barr|Maha Dermawan;At-Tawwab|Maha Penerima Taubat;Al-Muntaqim|Maha Pemberi Balasan;Al-\'Afuww|Maha Pemaaf;Ar-Ra\'uf|Maha Santun;Malikul Mulk|Penguasa Kerajaan;Dzul Jalali wal Ikram|Pemilik Keagungan dan Kemuliaan;Al-Muqsith|Maha Adil;Al-Jami\'|Maha Mengumpulkan;Al-Ghaniyy|Maha Kaya;Al-Mughni|Maha Memberi Kekayaan;Al-Mani\'|Maha Mencegah;Adh-Dharr|Maha Memberi Mudarat;An-Nafi\'|Maha Memberi Manfaat;An-Nur|Maha Bercahaya;Al-Hadi|Maha Pemberi Petunjuk;Al-Badi\'|Maha Pencipta Tanpa Contoh;Al-Baqi|Maha Kekal;Al-Warits|Maha Mewarisi;Ar-Rasyid|Maha Membimbing;Ash-Shabur|Maha Sabar'.split(';').map(x=>x.split('|'));
+function asG(){try{return JSON.parse(localStorage.getItem('tq_asma')||'[]')}catch(e){return[]}}
+function asT(i){let a=asG();a=a.includes(i)?a.filter(x=>x!==i):[...a,i];try{localStorage.setItem('tq_asma',JSON.stringify(a))}catch(e){}renderAs()}
+function renderAs(){const a=asG();$('asc').textContent=a.length+' dari '+AS.length+' nama sudah ditandai hafal';$('asl').innerHTML=AS.map((n,i)=>'<button onclick="asT('+i+')" class="'+(a.includes(i)?'card-highlight':'card')+' p-3 text-left"><span class="text-[10px] text-pink-500 font-bold">'+(i+1)+'</span><p class="font-bold text-sky-700 text-sm">'+n[0]+'</p><p class="text-xs text-slate-600">'+n[1]+'</p></button>').join('')}
+function hfG(){try{return JSON.parse(localStorage.getItem('tq_hfz')||'[]')}catch(e){return[]}}
+function hfS(a){try{localStorage.setItem('tq_hfz',JSON.stringify(a))}catch(e){}}
+function hfAdd(){const v=$('hfs').value.trim();if(!v)return;const a=hfG();a.unshift({s:v,st:$('hfst').value,t:Date.now(),r:Date.now()});hfS(a);$('hfs').value='';renderHf()}
+function hfR(i){const a=hfG();a[i].r=Date.now();hfS(a);renderHf()}
+function hfD(i){const a=hfG();a.splice(i,1);hfS(a);renderHf()}
+function renderHf(){const a=hfG();$('hfl').innerHTML=a.length?a.map((e,i)=>{const d=Math.floor((Date.now()-e.r)/864e5);return '<div class="'+(d>=7?'card-hl':'card')+' p-3"><div class="flex justify-between"><b class="text-sky-700">'+esc(e.s)+'</b><button onclick="hfD('+i+')" class="text-xs text-pink-500">Hapus</button></div><p class="text-xs text-slate-500">'+e.st+' - murajaah terakhir: '+(d===0?'hari ini':d+' hari lalu')+(d>=7?' <b class="text-pink-500">(perlu murajaah)</b>':'')+'</p><button onclick="hfR('+i+')" class="btn mt-2 px-4 py-1 rounded-lg text-xs font-semibold">Sudah murajaah</button></div>'}).join(''):'<p class="text-center text-sm text-slate-500">Belum ada hafalan tercatat.</p>'}
+function renderPuasa(){try{
+  const F=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric'}),P=x=>{const o={};F.formatToParts(x).forEach(p=>o[p.type]=parseInt(p.value));return o};
+  let out='';
+  for(let i=0;i<45;i++){
+    const d=new Date(Date.now()+i*864e5),h=P(d),w=d.getDay(),L=[];
+    const bad=(h.month===10&&h.day===1)||(h.month===12&&h.day>=10&&h.day<=13);
+    if(h.month===9)L.push('Puasa Ramadhan (wajib)');
+    else if(bad)L.push('Tidak boleh berpuasa (hari raya/tasyrik)');
+    else{if(w===1||w===4)L.push('Puasa Senin-Kamis');if(h.day>=13&&h.day<=15)L.push('Ayyamul Bidh');if(h.month===12&&h.day===9)L.push('Puasa Arafah');if(h.month===1&&h.day===10)L.push('Puasa Asyura');if(h.month===1&&h.day===9)L.push('Puasa Tasu\'a');if(h.month===10&&h.day>=2)L.push('Puasa 6 hari Syawal (boleh hari ini)')}
+    if(L.length)out+='<div class="'+(i===0?'card-highlight':bad?'card-hl':'card')+' p-3"><p class="font-bold text-sky-700 text-sm">'+d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'})+(i===0?' (hari ini)':'')+'</p><p class="text-xs text-pink-500">'+h.day+' '+BH[h.month-1]+' '+h.year+' H</p><p class="text-sm text-slate-600 mt-1">'+L.join(', ')+'</p></div>';
+  }
+  $('psl').innerHTML=out||'<p class="text-sm text-slate-500">Tidak ada puasa sunnah khusus.</p>';
+}catch(e){$('psl').textContent='Kalender Hijriah tidak didukung di perangkat ini.'}}
+const AB=[
+[1,'Niat','Umar bin Khattab','HR Bukhari dan Muslim','Setiap amal tergantung niatnya, dan setiap orang mendapat sesuai yang ia niatkan. Hijrah karena Allah dan Rasul-Nya bernilai di sisi Allah, sedangkan hijrah karena dunia atau wanita hanya mendapat itu.'],
+[2,'Islam, Iman, dan Ihsan','Umar bin Khattab','HR Muslim','Malaikat Jibril datang kepada Nabi dalam wujud seorang laki-laki dan bertanya tentang Islam, iman, ihsan, hari kiamat, dan tandanya. Nabi menjelaskan Islam (lima rukun), iman (enam rukun), dan ihsan, yaitu beribadah seolah-olah melihat Allah; jika tidak mampu, yakinlah Allah melihatmu.'],
+[3,'Rukun Islam','Abdullah bin Umar','HR Bukhari dan Muslim','Islam dibangun atas lima perkara: bersaksi tiada tuhan selain Allah dan Muhammad utusan Allah, menegakkan sholat, menunaikan zakat, berhaji ke Baitullah, dan berpuasa Ramadhan.'],
+[5,'Amal yang Ditolak','Aisyah','HR Bukhari dan Muslim','Siapa yang mengada-adakan dalam urusan agama kami sesuatu yang bukan bagian darinya, maka ia tertolak.'],
+[6,'Halal, Haram, dan Hati','Nu\'man bin Basyir','HR Bukhari dan Muslim','Yang halal jelas, yang haram jelas, dan di antara keduanya ada perkara syubhat. Siapa menjauhinya, ia menjaga agama dan kehormatannya. Ada segumpal daging dalam tubuh; jika ia baik, baiklah seluruh tubuh. Itulah hati.'],
+[7,'Agama adalah Nasihat','Tamim Ad-Dari','HR Muslim','Agama adalah nasihat: untuk Allah, kitab-Nya, rasul-Nya, para pemimpin kaum muslimin, dan seluruh kaum muslimin.'],
+[9,'Larangan dan Perintah','Abu Hurairah','HR Bukhari dan Muslim','Apa yang aku larang, jauhilah. Apa yang aku perintahkan, kerjakanlah semampumu.'],
+[12,'Meninggalkan yang Tidak Bermanfaat','Abu Hurairah','HR Tirmidzi','Di antara tanda baiknya keislaman seseorang adalah ia meninggalkan apa yang tidak bermanfaat baginya.'],
+[13,'Mencintai Saudara','Anas bin Malik','HR Bukhari dan Muslim','Tidak sempurna iman salah seorang kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.'],
+[15,'Berkata Baik atau Diam','Abu Hurairah','HR Bukhari dan Muslim','Siapa beriman kepada Allah dan hari akhir, hendaklah berkata baik atau diam. Hendaklah memuliakan tetangganya, dan memuliakan tamunya.'],
+[16,'Jangan Marah','Abu Hurairah','HR Bukhari','Seorang laki-laki meminta wasiat. Nabi bersabda, "Jangan marah." Ia mengulang beberapa kali, dan Nabi tetap bersabda, "Jangan marah."'],
+[17,'Ihsan dalam Segala Hal','Syaddad bin Aus','HR Muslim','Allah mewajibkan berbuat ihsan (baik dan teliti) dalam segala hal. Jika kalian menyembelih, sembelihlah dengan baik.'],
+[18,'Takwa dan Akhlak Baik','Abu Dzar dan Mu\'adz','HR Tirmidzi','Bertakwalah kepada Allah di mana pun kamu berada, iringilah keburukan dengan kebaikan niscaya menghapusnya, dan bergaullah dengan manusia dengan akhlak yang baik.'],
+[19,'Jagalah Allah','Abdullah bin Abbas','HR Tirmidzi','Jagalah Allah, niscaya Dia menjagamu. Jagalah Allah, engkau akan mendapati-Nya di hadapanmu. Jika meminta, mintalah kepada Allah; jika memohon pertolongan, mohonlah kepada Allah.'],
+[20,'Sifat Malu','Abu Mas\'ud Al-Badri','HR Bukhari','Di antara ajaran kenabian terdahulu yang masih dikenal manusia: jika kamu tidak malu, berbuatlah sesukamu. Maksudnya, malu menahan seseorang dari keburukan.'],
+[21,'Istiqamah','Sufyan bin Abdillah','HR Muslim','Katakanlah, "Aku beriman kepada Allah," lalu istiqamahlah.']];
+$('abl').innerHTML=AB.map((h,i)=>'<div class="'+(i%2?'card-hl':'card')+' p-4"><p class="text-xs text-pink-500 font-bold">Hadis ke-'+h[0]+'</p><h3 class="font-bold text-sky-700">'+h[1]+'</h3><p class="text-sm text-slate-600 mt-1">'+h[4]+'</p><p class="text-xs text-slate-400 mt-2">Diriwayatkan oleh '+h[2]+' - '+h[3]+'</p></div>').join('');
+const AY=[[94,5],[2,286],[2,152],[13,28],[65,3],[3,139],[39,53],[2,186],[59,18],[3,159],[17,23],[49,13],[55,13],[20,114]];
+$('home').insertAdjacentHTML('afterbegin','<div id="ayh" class="card-highlight p-4 mb-4 text-center"><p class="text-xs font-bold text-pink-500">Ayat Hari Ini</p><p class="text-sm text-slate-500 mt-1">Memuat...</p></div>');
+(async()=>{const d=new Date(),k=d.getFullYear()*1000+Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);let c=null;try{c=JSON.parse(localStorage.getItem('tq_ayat')||'null')}catch(e){}
+ if(!c||c.k!==k){const [sn,an]=AY[k%AY.length];try{const j=(await(await fetch('https://equran.id/api/v2/surat/'+sn)).json()).data,a=j.ayat.find(x=>x.nomorAyat===an);c={k,n:'QS '+j.namaLatin+': '+an,ar:a.teksArab,id:a.teksIndonesia};try{localStorage.setItem('tq_ayat',JSON.stringify(c))}catch(e){}}catch(e){}}
+ $('ayh').innerHTML=c?'<p class="text-xs font-bold text-pink-500">Ayat Hari Ini</p><p class="arab text-2xl mt-1">'+c.ar+'</p><p class="text-sm text-slate-700 mt-1">'+c.id+'</p><p class="text-xs text-sky-700 font-semibold mt-1">'+c.n+'</p>':'<p class="text-xs font-bold text-pink-500">Ayat Hari Ini</p><p class="text-sm text-slate-500 mt-1">Tersambung ke internet untuk memuat ayat.</p>'})();
+renderAs();renderHf();renderPuasa();
+
+Object.assign(SF,{
+4:{p:`Tahukah Teman Qur'an tentang wanita mulia yang menenangkan Rasulullah saat wahyu pertama turun?`,
+k:[`Khadijah binti Khuwailid adalah pedagang wanita terpandang di Makkah, yang dijuluki At-Thahirah, wanita suci. Ia mengajak Muhammad muda berdagang ke negeri Syam, dan terkesan dengan kejujurannya. Beberapa waktu kemudian mereka menikah, dan rumah tangga mereka penuh kasih sayang.`,
+`Saat wahyu pertama turun di Gua Hira, Rasulullah pulang dengan gemetar dan berkata, "Selimuti aku, selimuti aku!" Khadijah menenangkannya dan berkata, "Demi Allah, Allah tidak akan menghinakanmu. Engkau menyambung silaturahim, menanggung beban orang lemah, memuliakan tamu, dan menolong orang yang tertimpa musibah." (HR Bukhari). Ia membawa Rasulullah menemui sepupunya, Waraqah bin Naufal, yang membenarkan kenabian itu.`,
+`Khadijah wanita pertama yang beriman, dan ia mendukung dakwah dengan harta dan tenaganya, bahkan saat kaum muslimin diboikot Quraisy. Ia wafat tiga tahun sebelum hijrah. Nabi bersabda bahwa Jibril menyampaikan salam dari Allah kepadanya, serta kabar gembira berupa rumah di surga (HR Bukhari dan Muslim).`],
+a:`QS Adh-Dhuha: 3. Tuhanmu tidak meninggalkanmu dan tidak (pula) membencimu.`,
+h:[`Dukung orang tersayang dengan kata-kata yang menenangkan`,`Gunakan harta untuk kebaikan`,`Kejujuran menarik kepercayaan`],
+d:`Rabbana hab lana min azwajina wa dzurriyyatina qurrata a'yun (Ya Tuhan kami, anugerahkan pasangan dan keturunan yang menyejukkan hati).`,
+t:`Tulis satu kalimat penyemangat untuk orang tua atau saudaramu, lalu sampaikan.`},
+5:{p:`Tahukah Teman Qur'an tentang istri Rasulullah yang cerdas, menjadi tempat para sahabat bertanya?`,
+k:[`Aisyah binti Abu Bakar adalah istri Rasulullah, putri sahabat terdekat beliau. Ia cerdas, rajin menuntut ilmu, dan hidup dekat dengan Nabi di Madinah. Para sahabat sering bertanya kepadanya tentang hukum dan ibadah, dan ia menyampaikan banyak hadis.`,
+`Abu Musa Al-Asy'ari berkata bahwa bila mereka kesulitan memahami suatu urusan lalu bertanya kepada Aisyah, mereka mendapat ilmu darinya (HR Tirmidzi). Rasulullah juga bersenda gurau dengannya. Suatu hari dalam perjalanan, Rasulullah mengajaknya berlomba lari dan Aisyah menang. Beberapa tahun kemudian mereka berlomba lagi, dan kali ini Rasulullah menang. Beliau tersenyum dan berkata, "Ini membalas kekalahan yang dulu." (HR Abu Dawud)`,
+`Setelah Rasulullah wafat, Aisyah terus mengajarkan ilmu kepada murid-muridnya dari rumahnya di Madinah, sampai wafat pada tahun 58 H.`],
+a:`QS Thaha: 114. Katakanlah, "Ya Tuhanku, tambahkanlah ilmu kepadaku."`,
+h:[`Perempuan pun bisa menjadi ahli ilmu`,`Rumah tangga yang hangat dihiasi canda`,`Bertanya kepada yang berilmu`],
+d:`Rabbi zidni 'ilma (Ya Tuhanku, tambahkan ilmu kepadaku).`,
+t:`Ajak ayah atau ibu berlomba lari kecil di halaman, lalu berfoto bersama.`},
+7:{p:`Tahukah Teman Qur'an tentang putri Rasulullah yang tangannya melepuh karena bekerja sendiri?`,
+k:[`Fatimah Az-Zahra adalah putri bungsu Rasulullah dan Khadijah. Ia menikah dengan Ali bin Abi Thalib, dan memiliki putra-putra Hasan dan Husain. Rasulullah sangat menyayanginya dan bersabda bahwa Fatimah bagian dari dirinya (HR Bukhari dan Muslim).`,
+`Kehidupan Fatimah sangat sederhana. Ia menggiling gandum sendiri sampai tangannya melepuh, dan menimba air sampai berbekas di dadanya. Suatu hari ia mendengar bahwa Rasulullah menerima tawanan, lalu ia datang untuk meminta seorang pembantu. Tetapi Rasulullah tidak berada di rumah, maka ia menitipkan pesan kepada Aisyah.`,
+`Ketika Rasulullah datang, beliau menemui mereka di waktu malam dan bersabda, "Maukah kuberitahukan sesuatu yang lebih baik daripada pembantu? Jika kalian hendak tidur, bertasbih 33 kali, bertahmid 33 kali, dan bertakbir 34 kali." (HR Bukhari dan Muslim) Ali berkata bahwa ia tidak pernah meninggalkannya.`],
+a:`QS Al-Hasyr: 9. Mereka mengutamakan orang lain atas diri mereka sendiri, meskipun mereka sendiri dalam kesusahan.`,
+h:[`Hidup sederhana itu mulia`,`Kerja keras dan mandiri`,`Dzikir sebelum tidur memberi kekuatan`],
+d:`Subhanallah (33x), Alhamdulillah (33x), Allahu akbar (34x) sebelum tidur.`,
+t:`Mulai dzikir sebelum tidur selama 7 malam berturut-turut dan centang di tracker.`},
+12:{p:`Tahukah Teman Qur'an tentang pemuda kaya dan tampan yang meninggalkan kemewahan demi dakwah?`,
+k:[`Mush'ab bin Umair adalah pemuda Makkah yang tampan dan hidup mewah, pakaiannya selalu terbaik dan wanginya terkenal. Ia masuk Islam diam-diam. Ketika ibunya mengetahui, ia menahan dan menyiksanya, hingga Mush'ab keluar dari rumah dan meninggalkan semua kemewahan.`,
+`Rasulullah mengutusnya ke Madinah sebagai duta dakwah pertama, bersama Asad bin Zurarah. Ia mengajarkan Al-Qur'an dan Islam dengan lembut, hingga banyak penduduk Madinah masuk Islam, termasuk para pemimpin seperti Sa'ad bin Mu'adz.`,
+`Pada Perang Uhud, Mush'ab membawa bendera dan gugur sebagai syahid. Sahabat Khabbab berkata bahwa kain kafannya hanya sebuah burdah; bila kepalanya ditutup, kakinya terbuka, dan bila kakinya ditutup, kepalanya terbuka (HR Bukhari dan Muslim). Rasulullah memerintahkan menutup kepalanya dengan kain dan kakinya dengan rumput idzkhir.`],
+a:`QS Al-Ahzab: 23. Di antara orang-orang beriman ada yang menepati apa yang mereka janjikan kepada Allah.`,
+h:[`Tinggalkan kemewahan jika menghalangi kebenaran`,`Berdakwah dengan lemah lembut`,`Cinta kepada Allah lebih besar dari harta`],
+d:`Rabbana atina fid dunya hasanah wa fil akhirati hasanah wa qina 'adzaban nar.`,
+t:`Pilih satu mainan atau barang yang kamu sayangi, lalu sumbangkan kepada yang membutuhkan.`},
+9:{p:`Tahukah Teman Qur'an tentang panglima hebat yang berganti haluan dan dijuluki Pedang Allah?`,
+k:[`Khalid bin Walid berasal dari Bani Makhzum di Makkah dan dikenal sebagai panglima ulung. Ia ikut dalam barisan Quraisy di Perang Uhud. Namun setelah Perjanjian Hudaibiyah, hatinya terbuka kepada Islam. Ia berkata, "Kebenaran telah jelas." Ia berangkat ke Madinah, di jalan bertemu Amr bin Ash dan Utsman bin Thalhah, dan mereka masuk Islam bersama.`,
+`Pada Perang Mu'tah, tiga panglima muslimin gugur berturut-turut: Zaid bin Haritsah, Ja'far bin Abi Thalib, dan Abdullah bin Rawahah. Khalid mengambil bendera dan mengatur strategi. Ia mengubah posisi pasukan sehingga pasukan musuh mengira bala bantuan baru telah datang, lalu pasukan muslimin ditarik dengan selamat.`,
+`Di Madinah, Rasulullah memberi kabar tentang kejadian itu dan bersabda bahwa bendera diambil "salah satu pedang dari pedang-pedang Allah" hingga Allah memberi kemenangan (HR Bukhari). Sejak itu Khalid dijuluki Saifullah. Khalid berkata bahwa pada hari Mu'tah sembilan pedang patah di tangannya (HR Bukhari).`],
+a:`QS Al-Anfal: 10. Kemenangan itu hanyalah dari sisi Allah.`,
+h:[`Tidak ada kata terlambat untuk berubah`,`Tenang dan cerdas saat menghadapi kesulitan`,`Kemenangan hanya dari Allah`],
+d:`Hasbunallah wa ni'mal wakil (Cukuplah Allah bagi kami, sebaik-baik pelindung).`,
+t:`Ceritakan kepada adik: kapan kamu pernah berubah menjadi lebih baik?`}});
+renderSahabat();
+
 renderTrk();renderKh();renderDz();renderJ();show('home');
 </script>
 </body>
