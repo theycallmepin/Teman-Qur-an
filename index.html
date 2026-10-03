@@ -1245,6 +1245,89 @@ const FH3=['Fiqih Wanita 3: Sholat dan Puasa',`<p class="text-xs text-slate-500 
 KT2.push(FH3);
 $('kitab').innerHTML=ttl('Kitab Ulama','Ringkasan ditulis dari berbagai rujukan; ketuk kartu untuk membaca. Bab-bab lain ditambah bertahap.')+'<div class="space-y-3">'+KT2.map((k,i)=>'<div onclick="'+mk(k[0],k[1])+'" class="'+(i%2?'card-hl':'card')+' p-4 cursor-pointer"><h3 class="font-bold text-sky-700">'+k[0]+'</h3><span class="text-pink-400 text-xs font-semibold">Baca selengkapnya</span></div>').join('')+'</div>';
 
+/* V18: TEMA HIJAU + HEADER TENGAH + FOOTER */
+document.head.insertAdjacentHTML('beforeend',`<style>
+html[data-t=g] body{background-color:#eef4f0;background-image:radial-gradient(circle at 20% 20%,rgba(94,163,140,.25),transparent 50%),radial-gradient(circle at 85% 15%,rgba(201,164,92,.18),transparent 50%)}
+html[data-t=g] .from-sky-400{--tw-gradient-from:#2f7d6b!important}
+html[data-t=g] .via-sky-300{--tw-gradient-stops:var(--tw-gradient-from),#3f917b,var(--tw-gradient-to)!important}
+html[data-t=g] .to-pink-400{--tw-gradient-to:#1f5c4d!important}
+html[data-t=g] .btn{background:linear-gradient(135deg,#2f7d6b,#1f5c4d)}
+html[data-t=g] .card{background:rgba(255,255,255,.94);border-color:#d8e8df;box-shadow:0 4px 14px rgba(47,125,107,.14)}
+html[data-t=g] .card-hl{background:linear-gradient(135deg,#eef6f1,#e3f0e8);border-color:#b9d6c6}
+html[data-t=g] .card-highlight{background:linear-gradient(135deg,#d6ebe0,#f1e4c6);border-color:#c9a45c}
+html[data-t=g] .hlon{background:#f1e4c6!important;border-color:#c9a45c!important}
+html[data-t=g] .tile{background:linear-gradient(135deg,#eef6f1,#dcebe2)!important;box-shadow:0 8px 20px rgba(47,125,107,.15)}
+html[data-t=g] .text-sky-700,html[data-t=g] .text-sky-600,html[data-t=g] .text-sky-500,html[data-t=g] .tile b{color:#1f5c4d}
+html[data-t=g] .text-pink-500,html[data-t=g] .text-pink-400{color:#a8812f}
+html[data-t=g] .bg-sky-50{background:#eef6f1}
+html[data-t=g] .border-sky-100,html[data-t=g] .border-sky-200,html[data-t=g] .border-sky-300{border-color:#cfe3d8}
+html[data-t=g] .glass{background:rgba(240,247,243,.78)}
+html[data-t=g] .qk{background:rgba(255,255,255,.9);box-shadow:0 4px 12px rgba(47,125,107,.14)}
+html[data-t=g] svg circle[fill="#bae6fd"]{fill:#cfe6d9}
+html[data-t=g] svg circle[fill="#fbcfe8"]{fill:#ecdcb4}
+html[data-t=g] svg [fill="#f9a8d4"]{fill:#c9a45c}
+html[data-t=g] svg [fill="#7dd3fc"]{fill:#5ea38c}
+</style>`);
+document.querySelector('#home .thm[data-t=e]').insertAdjacentHTML('afterend','<button class="thm" data-t="g" onclick="setTheme(\'g\')">Hijau</button>');
+setTheme(th);
+
+/* V18: HEADER TENGAH, FOOTER, TEMA UNGU & MALAM TEAL, PODCAST NAPAS LEGA */
+(function(){const hd=document.querySelector('header');hd.classList.add('text-center');const h1=hd.querySelector('h1'),ps=hd.querySelectorAll('p');hd.insertBefore(h1,ps[0]);h1.className='text-3xl font-bold';ps[0].className='text-sm opacity-95 mt-1';ps[1].remove();
+const m=document.querySelector('main');m.classList.remove('pb-44');m.classList.add('pb-2');
+m.insertAdjacentHTML('afterend','<p class="text-center text-xs text-slate-400 pt-2 pb-28">Teman Qur\'an by Fitri Qur\'an</p>')})();
+document.head.insertAdjacentHTML('beforeend',`<style>
+html[data-t=u] body{background-color:#f6f3fb;background-image:radial-gradient(circle at 20% 20%,rgba(167,139,250,.25),transparent 50%),radial-gradient(circle at 85% 15%,rgba(196,181,253,.3),transparent 50%)}
+html[data-t=u] .from-sky-400{--tw-gradient-from:#6d4aa8!important}
+html[data-t=u] .via-sky-300{--tw-gradient-stops:var(--tw-gradient-from),#8a6bc7,var(--tw-gradient-to)!important}
+html[data-t=u] .to-pink-400{--tw-gradient-to:#3b1f6b!important}
+html[data-t=u] .btn{background:linear-gradient(135deg,#7c5cbf,#4b2a82)}
+html[data-t=u] .card{background:rgba(255,255,255,.95);border-color:#e5dcf5;box-shadow:0 4px 14px rgba(91,60,160,.14)}
+html[data-t=u] .card-hl{background:linear-gradient(135deg,#f3eeff,#e9defc);border-color:#c9b6ee}
+html[data-t=u] .card-highlight{background:linear-gradient(135deg,#ddd0f7,#c9b6ee);border-color:#a58bdc}
+html[data-t=u] .hlon{background:#ddd0f7!important;border-color:#8a6bc7!important}
+html[data-t=u] .tile{background:linear-gradient(135deg,#f3eeff,#e4d9fa)!important}
+html[data-t=u] .text-sky-700,html[data-t=u] .text-sky-600,html[data-t=u] .text-sky-500,html[data-t=u] .tile b{color:#4b2a82}
+html[data-t=u] .text-pink-500,html[data-t=u] .text-pink-400{color:#a07a2c}
+html[data-t=u] .bg-sky-50{background:#f3eeff}
+html[data-t=u] .border-sky-100,html[data-t=u] .border-sky-200,html[data-t=u] .border-sky-300{border-color:#e0d5f3}
+html[data-t=u] .glass{background:rgba(250,247,255,.82)}
+html[data-t=u] svg circle[fill="#bae6fd"]{fill:#d9ccf3}
+html[data-t=u] svg circle[fill="#fbcfe8"]{fill:#e9defc}
+html[data-t=u] svg [fill="#f9a8d4"]{fill:#c9b6ee}
+html[data-t=u] svg [fill="#7dd3fc"]{fill:#a58bdc}
+html[data-t=t] body{background-color:#0f1a1f;background-image:none;color:#d7e3e6}
+html[data-t=t] .from-sky-400{--tw-gradient-from:#2a6370!important}
+html[data-t=t] .via-sky-300{--tw-gradient-stops:var(--tw-gradient-from),#2f7482,var(--tw-gradient-to)!important}
+html[data-t=t] .to-pink-400{--tw-gradient-to:#1c4a55!important}
+html[data-t=t] .btn{background:linear-gradient(135deg,#3b8796,#256370);color:#fff}
+html[data-t=t] .card,html[data-t=t] .qk{background:rgba(31,45,51,.96);border-color:#2c4148;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+html[data-t=t] .card-hl{background:linear-gradient(135deg,#243840,#1d2f36);border-color:#35525b}
+html[data-t=t] .card-highlight{background:linear-gradient(135deg,#2a5560,#22464f);border-color:#d4b36a}
+html[data-t=t] .hlon{background:#33505a!important;border-color:#d4b36a!important}
+html[data-t=t] .tile{background:linear-gradient(135deg,#223840,#1b2d33)!important}
+html[data-t=t] .text-slate-800,html[data-t=t] .text-slate-700,html[data-t=t] .text-slate-600{color:#cfdde0}
+html[data-t=t] .text-slate-500,html[data-t=t] .text-slate-400{color:#92a8ad}
+html[data-t=t] .text-sky-700,html[data-t=t] .text-sky-600,html[data-t=t] .text-sky-500,html[data-t=t] .tile b{color:#e8d49b}
+html[data-t=t] .text-pink-500,html[data-t=t] .text-pink-400{color:#d4b36a}
+html[data-t=t] [class*="bg-white"],html[data-t=t] .bg-sky-50,html[data-t=t] .bg-pink-100{background-color:#1d2c32!important}
+html[data-t=t] input,html[data-t=t] textarea,html[data-t=t] select{background:#16252b!important;color:#e6eef0;border-color:#2c4148!important}
+html[data-t=t] .border-sky-100,html[data-t=t] .border-sky-200,html[data-t=t] .border-pink-200,html[data-t=t] .border-pink-300{border-color:#2c4148}
+html[data-t=t] .glass{background:rgba(18,30,35,.88)}
+html[data-t=t] svg.fixed{opacity:.1}
+</style>`);
+document.querySelector('.thm[data-t=e]').insertAdjacentHTML('afterend','<button class="thm" data-t="u" onclick="setTheme(\'u\')">Ungu</button><button class="thm" data-t="t" onclick="setTheme(\'t\')">Malam Teal</button>');
+setTheme(document.documentElement.dataset.t||'p');
+
+PODCAST.push(
+{s:94,t:'Trailer | Napas Lega',d:'Pas dada lagi sempit, kita suka lupa kalau...'},
+{s:94,t:'Dada Pernah Lega | EPS 1 - Ayat 1',d:'Allah buka surat ini dengan pertanyaan, bukan perintah. Kenapa ya...'},
+{s:94,t:'Beban yang Diangkat Diam-diam | EPS 2 - Ayat 2-3',d:'Pernah ngerasa punggung berat banget, terus ternyata...'},
+{s:94,t:'Namamu Dijaga | EPS 3 - Ayat 4',d:'Ada hal yang nggak pernah kamu minta, tapi Allah tinggikan...'},
+{s:94,t:'Bareng, Bukan Setelah | EPS 4 - Ayat 5-6',d:'Kesulitan nggak datang sendirian. Dia punya teman...'},
+{s:94,t:'Habis Satu, Lanjut Satu | EPS 5 - Ayat 7-8',d:'Urusan selesai, terus apa? Ayat terakhir kasih jawabannya...'});
+podCard=function(e){const au=/\.(mp3|m4a|ogg|wav)(\?|$)/i.test(e.u||'');return '<div class="card p-4"><p class="font-bold text-sky-700">'+esc(e.t)+'</p><p class="text-sm text-slate-600 mt-1">'+esc(e.d||'')+'</p>'+(e.u?(au?'<audio controls class="w-full mt-2" src="'+e.u+'"></audio>':'<a href="'+e.u+'" target="_blank" rel="noopener" class="btn inline-block mt-2 px-4 py-2 rounded-xl text-xs font-semibold">Dengarkan</a>'):'<span class="inline-block mt-2 text-xs text-pink-500 font-semibold">Segera hadir</span>')+'</div>'};
+$('pdl').innerHTML='<h3 class="font-bold text-sky-700">Al-Insyirah: Napas Lega</h3><p class="text-xs text-slate-500 mb-1">Satu surat, delapan ayat, untuk saat dada terasa sempit.</p>'+PODCAST.map(podCard).join('');
+
 renderTrk();renderKh();renderDz();renderJ();show('home');
 </script>
 </body>
