@@ -1871,6 +1871,48 @@ html[data-t=c] svg [fill="#7dd3fc"]{fill:#60a5fa}
 document.querySelector('.thm[data-t=r]').insertAdjacentHTML('afterend','<button class="thm" data-t="gl" onclick="setTheme(\'gl\')">Glacier</button><button class="thm" data-t="c" onclick="setTheme(\'c\')">Ceria</button>');
 setTheme(document.documentElement.dataset.t||'p');
 
+/* V39: BELAJAR IQRA: 6 tahap + permainan Pasangkan Bunyi & Susun Suku Kata (susunan asli, bukan salinan buku Iqro) */
+(function(){
+const FA='\u064E',KA='\u0650',DM='\u064F',TF='\u064B',TK='\u064D',TD='\u064C',SK='\u0652',SD='\u0651';
+const L=[['ب','b'],['ت','t'],['ث','ts'],['ج','j'],['ح','ḥ'],['خ','kh'],['د','d'],['ذ','dz'],['ر','r'],['ز','z'],['س','s'],['ش','sy'],['ص','sh'],['ض','dh'],['ط','th'],['ظ','zh'],['ع','ʿ'],['غ','gh'],['ف','f'],['ق','q'],['ك','k'],['ل','l'],['م','m'],['ن','n'],['ه','h'],['و','w'],['ي','y']];
+const LV=[
+['Tahap 1: Fathah','Bunyi "a" pada setiap huruf',c=>[[c[0]+FA,c[1]+'a']]],
+['Tahap 2: Fathah, Kasrah, Dhammah','Bunyi a, i, u',c=>[[c[0]+FA,c[1]+'a'],[c[0]+KA,c[1]+'i'],[c[0]+DM,c[1]+'u']]],
+['Tahap 3: Tanwin','Bunyi an, in, un',c=>[[c[0]+TF,c[1]+'an'],[c[0]+TK,c[1]+'in'],[c[0]+TD,c[1]+'un']]],
+['Tahap 4: Mad (panjang)','Bunyi aa, ii, uu',c=>[[c[0]+FA+'ا',c[1]+'aa'],[c[0]+KA+'ي',c[1]+'ii'],[c[0]+DM+'و',c[1]+'uu']]],
+['Tahap 5: Sukun','Huruf mati: ab, ib, ub',c=>[['أ'+FA+c[0]+SK,'a'+c[1]],['إ'+KA+c[0]+SK,'i'+c[1]],['أ'+DM+c[0]+SK,'u'+c[1]]]],
+['Tahap 6: Tasydid','Huruf ditekan: bba, bbi, bbu',c=>/^[a-z]$/.test(c[1])?[[c[0]+SD+FA,c[1]+c[1]+'a'],[c[0]+SD+KA,c[1]+c[1]+'i'],[c[0]+SD+DM,c[1]+c[1]+'u']]:[]]];
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const pool=i=>L.flatMap(c=>LV[i][2](c).map(x=>({a:x[0],l:x[1]})));
+const smp=(a,n)=>{const m=new Map();shuf(a).forEach(x=>{if(!m.has(x.l))m.set(x.l,x)});return[...m.values()].slice(0,n)};
+const pr=()=>{try{return JSON.parse(localStorage.getItem('tq_iqra')||'{}')}catch(e){return{}}};
+const tot=(P,i)=>((P[i]||{}).m||0)+((P[i]||{}).s||0);
+const sv=(i,g,n)=>{const P=pr();P[i]=P[i]||{};P[i][g]=Math.max(P[i][g]||0,n);try{localStorage.setItem('tq_iqra',JSON.stringify(P))}catch(e){}};
+const st=window.iqst={lv:0};
+const R=h=>{$('iqb').innerHTML=h};
+const stars=n=>'<span class="text-amber-400">'+'\u2605'.repeat(n)+'</span><span class="text-slate-300">'+'\u2605'.repeat(3-n)+'</span>';
+const back=()=>'<button onclick="iqOpen('+st.lv+')" class="text-xs text-sky-700 underline mb-2">\u2190 Kembali ke tahap</button>';
+function home(){const P=pr();R('<p class="text-[11px] text-slate-500 mb-2">Susunan belajar bertahap yang dibuat sendiri. Selesaikan permainan di tiap tahap (minimal 3 bintang) untuk membuka tahap berikutnya. Suara memakai suara perangkat dan bisa kurang tepat; belajarlah bacaan yang benar kepada guru.</p><div class="space-y-2">'+LV.map((l,i)=>{const op=i===0||tot(P,i-1)>=3,t=tot(P,i);return'<button '+(op?'onclick="iqOpen('+i+')"':'disabled')+' class="card p-3 w-full text-left flex items-center gap-3 '+(op?'':'opacity-50')+'"><span class="text-2xl">'+(op?'\u{1F4D7}':'\u{1F512}')+'</span><span class="flex-1"><b class="text-sky-700 text-sm">'+l[0]+'</b><span class="block text-[11px] text-slate-500">'+l[1]+'</span></span><span class="text-xs">'+'<span class="text-amber-400">'+'\u2605'.repeat(t)+'</span><span class="text-slate-300">'+'\u2605'.repeat(6-t)+'</span></span></button>'}).join('')+'</div>')}
+window.iqHome=home;
+window.iqOpen=i=>{st.lv=i;const P=pr()[i]||{};R('<button onclick="iqHome()" class="text-xs text-sky-700 underline mb-2">\u2190 Semua tahap</button><h3 class="font-bold text-sky-700">'+LV[i][0]+'</h3><p class="text-xs text-slate-500 mb-3">'+LV[i][1]+'</p><div class="space-y-2"><button onclick="iqKen()" class="card p-3 w-full text-left"><b class="text-sm text-sky-700">1. Kenalan</b><span class="block text-[11px] text-slate-500">Ketuk untuk mendengar dan melihat bunyinya</span></button><button onclick="iqMem()" class="card p-3 w-full text-left flex justify-between"><span><b class="text-sm text-sky-700">2. Pasangkan Bunyi</b><span class="block text-[11px] text-slate-500">Cocokkan tulisan Arab dengan bunyinya</span></span>'+stars(P.m||0)+'</button><button onclick="iqSus()" class="card p-3 w-full text-left flex justify-between"><span><b class="text-sm text-sky-700">3. Susun Suku Kata</b><span class="block text-[11px] text-slate-500">Urutkan tulisan Arab sesuai bacaan</span></span>'+stars(P.s||0)+'</button></div>')};
+window.iqSay=t=>say(t,'ar-SA');
+window.iqKen=()=>{const f=LV[st.lv][2];R(back()+'<div class="space-y-1">'+L.map(c=>f(c)).filter(r=>r.length).map(r=>'<div class="card p-2 flex gap-2 justify-around">'+r.map(x=>'<button onclick="iqSay(this.dataset.a)" data-a="'+x[0]+'" class="text-center px-2"><span class="arab text-3xl block">'+x[0]+'</span><span class="text-[11px] text-sky-700 font-semibold">'+x[1]+'</span></button>').join('')+'</div>').join('')+'</div>')};
+function fin(g,n,msg){sv(st.lv,g,n);R(back()+'<div class="card-hl p-5 text-center"><p class="text-4xl">'+(n===3?'\u{1F389}':'\u{1F44D}')+'</p><p class="text-2xl mt-1">'+stars(n)+'</p><p class="text-sm text-slate-600 mt-1">'+msg+'</p><button onclick="'+(g==='m'?'iqMem()':'iqSus()')+'" class="btn mt-3 px-5 py-2 rounded-xl text-sm font-semibold">Main lagi</button></div>')}
+window.iqMem=()=>{const pk=smp(pool(st.lv),6);let c=[];pk.forEach((p,i)=>{c.push({id:i,t:'a',v:p.a});c.push({id:i,t:'l',v:p.l})});st.m={c:shuf(c),o:[],d:0,n:0,lock:false};memR()};
+function memR(){const m=st.m;R(back()+'<p class="text-xs text-slate-500 mb-2">Cari pasangan: tulisan Arab dan bunyinya. Percobaan: <b>'+m.n+'</b></p><div class="grid grid-cols-3 gap-2">'+m.c.map((x,k)=>'<button onclick="iqFlip('+k+')" class="'+(x.ok?'card-hl':'card')+' h-20 flex items-center justify-center '+(x.o||x.ok?'':'btn')+'">'+(x.o||x.ok?(x.t==='a'?'<span class="arab text-3xl">'+x.v+'</span>':'<b class="text-lg text-sky-700">'+x.v+'</b>'):'<span class="text-2xl">?</span>')+'</button>').join('')+'</div>')}
+window.iqFlip=k=>{const m=st.m,x=m.c[k];if(m.lock||x.o||x.ok)return;x.o=true;m.o.push(k);if(x.t==='a')say(x.v,'ar-SA');if(m.o.length===2){m.n++;const a=m.c[m.o[0]],b=m.c[m.o[1]];if(a.id===b.id&&a.t!==b.t){a.ok=b.ok=true;a.o=b.o=false;m.o=[];m.d++;memR();if(m.d===6)setTimeout(()=>fin('m',m.n<=8?3:m.n<=12?2:1,'Selesai dalam '+m.n+' percobaan.'),600);return}m.lock=true;memR();setTimeout(()=>{a.o=b.o=false;m.o=[];m.lock=false;memR()},800);return}memR()};
+window.iqSus=()=>{st.s={r:0,mis:0};susN()};
+function susN(){const s=st.s;if(s.r>=5){fin('s',s.mis<=1?3:s.mis<=4?2:1,'Salah ketuk: '+s.mis+' kali.');return}s.seq=smp(pool(st.lv),3);s.tiles=shuf(s.seq.map((p,i)=>({i:i,a:p.a,u:false})));s.pos=0;susV()}
+function susV(){const s=st.s;R(back()+'<p class="text-xs text-slate-500">Ronde '+(s.r+1)+' dari 5. Ketuk tulisan Arab sesuai urutan bacaan:</p><p class="text-center text-2xl font-bold text-sky-700 my-3">'+s.seq.map(p=>p.l).join(' - ')+'</p><div class="flex justify-center gap-3 mb-4">'+s.seq.map((p,i)=>'<div class="card-hl w-20 h-16 flex items-center justify-center arab text-3xl">'+(i<s.pos?p.a:'\uFF3F')+'</div>').join('')+'</div><div class="flex justify-center gap-3">'+s.tiles.map((t,k)=>'<button '+(t.u?'disabled':'')+' onclick="iqTile('+k+')" class="card w-20 h-16 arab text-3xl '+(t.u?'opacity-30':'')+'">'+t.a+'</button>').join('')+'</div>')}
+window.iqTile=k=>{const s=st.s,t=s.tiles[k];if(t.u)return;if(t.i===s.pos){t.u=true;s.pos++;say(t.a,'ar-SA');susV();if(s.pos>=3){s.r++;setTimeout(susN,700)}}else{s.mis++;navigator.vibrate&&navigator.vibrate(60);susV()}};
+const NMI=['iqra','Belajar Iqra','\u{1F9E9}'];
+MN.push(NMI);TABOF.iqra='h-quran';
+document.querySelector('#h-quran .grid').insertAdjacentHTML('beforeend','<button class="tile" onclick="show(\'iqra\')"><span class="i">'+NMI[2]+'</span><b>'+NMI[1]+'</b></button>');
+$('mm').firstElementChild.insertAdjacentHTML('beforeend','<button onclick="show(\'iqra\')" class="rounded-xl bg-white/80 border border-sky-100 p-2 text-[11px] font-semibold text-sky-700"><span class="block text-xl">'+NMI[2]+'</span>'+NMI[1]+'</button>');
+document.querySelector('main').insertAdjacentHTML('beforeend',sec('iqra',ttl('Belajar Iqra','Belajar membaca huruf hijaiyah berharakat selangkah demi selangkah, sambil bermain.')+'<div id="iqb"></div>'));
+const _s5=show;show=function(id){_s5(id);if(id==='iqra')home()};
+})();
+
 renderTrk();renderKh();renderDz();renderJ();show('home');
 </script>
 </body>
