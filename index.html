@@ -801,7 +801,7 @@ d:`Rabbana amanna bima anzalta wattaba'nar rasula faktubna ma'asy syahidin (Ya T
 t:`Ceritakan kembali kisah bayi Isa berbicara, lalu sebutkan 3 mukjizatnya.`},
 24:{p:`Tahukah Teman Qur'an tentang yatim yang dikenal Al-Amin dan menjadi rahmat bagi seluruh alam?`,
 k:[`Muhammad SAW lahir di kota Makkah pada tahun Gajah, sekitar tahun 570 M. Ayahnya, Abdullah, wafat sebelum beliau lahir. Ibunya, Aminah, wafat saat beliau masih kecil. Beliau diasuh kakeknya, Abdul Muththalib, lalu pamannya, Abu Thalib. Sejak muda, orang-orang memanggilnya Al-Amin, yang terpercaya. Beliau kemudian menikah dengan Khadijah.`,
-`Pada usia sekitar 40 tahun, saat berkhalwat di Gua Hira, malaikat Jibril datang dan berkata, "Iqra', bacalah!" Beliau menjawab, "Aku tidak bisa membaca." Jibril mengulanginya tiga kali, lalu turun wahyu pertama, QS Al-'Alaq 1-5 (HR Bukhari). Beliau pulang gemetar. Khadijah menenangkan, "Demi Allah, Allah tidak akan menghinakanmu. Engkau menyambung silaturahim, menanggung beban orang lemah, dan memuliakan tamu."`,
+`Pada usia sekitar 40 tahun, saat berkhalwat di Gua Hira, malaikat Jibril datang dan berkata, "Iqra', bacalah!" Beliau menjawab, "Aku tidak bisa membaca." Jibril mengulanginya tiga kali, lalu turun wahyu pertama, QS Al-'Alaq: 1-5 (HR Bukhari). Beliau pulang gemetar. Khadijah menenangkan, "Demi Allah, Allah tidak akan menghinakanmu. Engkau menyambung silaturahim, menanggung beban orang lemah, dan memuliakan tamu."`,
 `Beliau berdakwah dengan sabar menghadapi tekanan Quraisy, sampai Allah memerintahkan hijrah ke Madinah pada tahun 622 M. Di Gua Tsur, saat Abu Bakar cemas, beliau menenangkan, "Jangan bersedih, sesungguhnya Allah bersama kita." Di Madinah, kaum Anshar menyambut beliau dan kaum Muhajirin dengan penuh kasih. Beliau membangun masjid dan masyarakat yang saling bersaudara.`,
 `Beliau membebaskan Makkah dengan penuh kasih sayang pada tahun 8 H. Setelah menyempurnakan risalah, beliau wafat di Madinah pada tahun 11 H (632 M). Beliau meninggalkan Al-Qur'an dan sunnah sebagai pedoman umat.`],
 a:`QS Al-Ahzab: 21`,
@@ -1652,7 +1652,7 @@ document.querySelector('main').insertAdjacentHTML('beforeend',sec('dasar',ttl('A
 const li=(a)=>'<ul class="list-disc ml-4 text-sm space-y-1 mt-1">'+a.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
 const TU=[
 ['Apa itu Tauhid?',`<p>Tauhid artinya mengesakan Allah. Para ulama menjelaskannya dalam tiga bagian:</p>${li(['<b>Tauhid rububiyyah:</b> hanya Allah yang menciptakan, memberi rezeki, dan mengatur alam. QS Az-Zumar: 62','<b>Tauhid uluhiyyah:</b> hanya Allah yang berhak disembah dan dimintai pertolongan. QS Al-Fatihah: 5','<b>Tauhid asma wa shifat:</b> beriman kepada nama dan sifat Allah sebagaimana yang Dia sebutkan sendiri, tanpa menyerupakan-Nya dengan makhluk. QS Asy-Syura: 11'])}`],
-['Makna La ilaha illallah',`<p>Kalimat ini berarti tiada sembahan yang berhak disembah selain Allah. Perintah untuk mengilmuinya ada pada QS Muhammad: 47:19.</p><p class="mt-2">Para ulama menyebut syarat-syaratnya yang biasa diajarkan: ilmu (memahami maknanya), yakin, ikhlas, jujur, cinta, tunduk, dan menerima. Rinciannya bisa dipelajari bersama guru.</p>`],
+['Makna La ilaha illallah',`<p>Kalimat ini berarti tiada sembahan yang berhak disembah selain Allah. Perintah untuk mengilmuinya ada pada QS Muhammad: 19.</p><p class="mt-2">Para ulama menyebut syarat-syaratnya yang biasa diajarkan: ilmu (memahami maknanya), yakin, ikhlas, jujur, cinta, tunduk, dan menerima. Rinciannya bisa dipelajari bersama guru.</p>`],
 ['Sepuluh Wasiat (Al-An\'am 151-153)',`<p>Tiga ayat ini memuat sepuluh wasiat. QS Al-An'am: 151-153</p>${li(['Tidak menyekutukan Allah dengan apa pun.','Berbuat baik kepada kedua orang tua.','Tidak membunuh anak karena takut miskin.','Menjauhi perbuatan keji, yang tampak maupun tersembunyi.','Tidak membunuh jiwa yang diharamkan Allah, kecuali dengan alasan yang benar.','Tidak mendekati harta anak yatim kecuali dengan cara terbaik sampai ia dewasa.','Menyempurnakan takaran dan timbangan dengan adil.','Berkata adil walaupun terhadap kerabat.','Memenuhi janji Allah.','Mengikuti jalan Allah yang lurus dan tidak mengikuti jalan-jalan lain.'])}`],
 ['Syirik dan Menjauhinya',`<p>Syirik adalah menyekutukan Allah. Luqman menasihati anaknya bahwa syirik adalah kezaliman yang besar. QS Luqman: 13</p><p class="mt-2 text-sm">Riya (beramal agar dipuji manusia) disebut para ulama sebagai syirik kecil. Nabi ﷺ mengkhawatirkannya atas umatnya (HR Ahmad). Cara menjaganya: meluruskan niat, berdoa memohon ikhlas, dan menyembunyikan amal kebaikan.</p>`]];
 const TH=[
@@ -1986,6 +1986,38 @@ qTab=function(t,r){if(t==='baca'&&RM==='buku'&&(r===-1||(r===undefined&&qs.r<0))
 let tx=0,ty=0;
 document.addEventListener('touchstart',e=>{if(e.target.closest&&e.target.closest('#qpan')){tx=e.touches[0].clientX;ty=e.touches[0].clientY}else tx=null},{passive:true});
 document.addEventListener('touchend',e=>{if(tx===null||RM!=='buku'||qs.t!=='baca')return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>70&&Math.abs(dy)<45)bkGo(dx<0?1:-1)},{passive:true});
+})();
+
+/* V42: ADAB PENYEBUTAN (a.s., r.a., rahimahullah, shalawat) + KOREKSI RUJUKAN AYAT */
+(function(){
+Object.assign(QSM,{"Al-'Alaq":96,"Al-\u2018Alaq":96});
+NF[24].d="Allahumma shalli 'ala sayyidina Muhammad wa 'ala ali sayyidina Muhammad (Ya Allah, limpahkan sholawat kepada junjungan kami Muhammad dan keluarganya).<span class=\"block arab text-xl text-right text-slate-800 my-1\">اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ</span><span class=\"block text-[11px] text-slate-500 mt-1\">Catatan: lafal shalawat dalam hadis adalah \"Allahumma shalli 'ala Muhammad wa 'ala ali Muhammad ...\" (HR Bukhari 3370, Muslim 406). Banyak ulama, terutama mazhab Syafi'i, menambahkan \"sayyidina\" sebagai adab karena beliau adalah sayyid (pemimpin) anak Adam (HR Muslim 2278). Sebagian ulama lain memilih lafal persis seperti hadis, terutama di dalam sholat. Keduanya pendapat ulama; ikuti bimbingan guru.</span>";
+const SKIP='.arab,script,style,button,input,textarea,select,option,summary,h1,h2,h3,.tile,header,nav';
+const NB="Adam|Idris|Nuh|Hud|Shalih|Ibrahim|Luth|Ismail|Ishaq|Ya'qub|Yusuf|Ayyub|Syu'aib|Musa|Harun|Dzulkifli|Dawud|Sulaiman|Ilyas|Ilyasa'|Yunus|Zakariya|Yahya|Isa";
+const NAS="(?!\\s*(?:a\\.s|AS\\b|'alaihis|\u2018alaihis))";
+const rM=/(Nabi Muhammad|Rasul Muhammad|Rasulullah)(?!\s*(?:\uFDFA|SAW|S\.A\.W|saw|shallallahu))/g;
+const rV=/\bNabi(?= (?:bersabda|mengajarkan|memerintahkan|melarang)\b)/g;
+const rNB=new RegExp("\\b(Nabi|Rasul|Nabiyullah)\\s+("+NB+")\\b"+NAS,"g");
+const rB=new RegExp("(?<!Bani |QS |Surat |surat |Surah |surah |Nabi |Rasul |Abu |Ibnu |bin |binti )\\b("+NB+")\\b(?!\\s*(?:a\\.s|AS\\b|'alaihis|:|\\d))");
+const SH=["Abu Dzar dan Mu'adz","Abu Bakar Ash-Shiddiq","Abu Bakar","Umar bin Khattab","Umar bin al-Khattab","Umar(?= - HR)","Utsman bin Affan","Ali bin Abi Thalib","Khadijah binti Khuwailid","Khadijah","Aisyah binti Abu Bakar","Aisyah","Fathimah","Bilal bin Rabah","Khalid bin Walid","Salman Al-Farisi","Mush'ab bin Umair","Abu Hurairah","Abdullah bin Abbas","Abdullah bin Mas'ud","Abdullah bin Umar","Ibnu Abbas","Anas bin Malik","Abu Dzar Al-Ghifari","Abu Dzar","Mu'adz bin Jabal","Abu Malik Al-Asy'ari","Abu Mas'ud Al-Badri","Abu Sa'id Al-Khudri","Abu Tsa'labah Al-Khusyani","Al-Hasan bin Ali","Al-Irbadh bin Sariyah","An-Nawwas bin Sam'an","Jabir bin Abdillah","Nu'man bin Basyir","Sahl bin Sa'd","Sufyan bin Abdillah","Syaddad bin Aus","Tamim Ad-Dari"].sort((x,y)=>y.length-x.length);
+const rSH=new RegExp("\\b("+SH.join('|')+")(?!\\s*(?:r\\.a|ra\\b|radhiyallahu|RA\\b))");
+const rU=/\b(Imam An-Nawawi|Imam Nawawi|Al-Albani)\b(?!\s*(?:rahimahullah|rh\.a))/;
+const ins=(s,re,t)=>{const m=re.exec(s);return m?s.slice(0,m.index+m[0].length)+t+s.slice(m.index+m[0].length):s};
+const DONE=new WeakSet();
+function fix(n,story){let s=n.nodeValue;if(!s||s.trim().length<3)return;const o=s;
+ s=s.replace(rM,'$1 \uFDFA').replace(rNB,'$& a.s.').replace(rV,'Nabi \uFDFA');
+ if(story)s=ins(s,rB,' a.s.');
+ s=ins(s,rSH,' r.a.');s=ins(s,rU,' rahimahullah');
+ if(s!==o)n.nodeValue=s}
+function honor(root){if(!root)return;const el=root.nodeType===1?root:root.parentElement;if(!el||el.closest(SKIP))return;
+ const mb=$('mBody'),story=!!(mb&&el.closest('#mBody')&&/pembuka rindu/i.test(mb.innerText||''));
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>(n.parentElement&&!n.parentElement.closest(SKIP))?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT});
+ let n;while(n=w.nextNode()){if(DONE.has(n))continue;DONE.add(n);fix(n,story)}}
+window.honorAll=()=>{honor(document.querySelector('main'));honor($('mBody'))};
+new MutationObserver(ms=>{const seen=new Set();ms.forEach(m=>m.addedNodes.forEach(n=>{const r=n.nodeType===3?n.parentElement:(n.nodeType===1?n:null);if(r&&!seen.has(r)){seen.add(r);honor(r)}}))}).observe(document.body,{childList:true,subtree:true});
+renderNabi();
+$('hsc').innerHTML=Object.keys(NF).filter(i=>nabi[i]).map(i=>'<button onclick="'+mk('Kisah Nabi '+nabi[i][0],nbCover(i)+nfH(NF[i]))+'" class="shrink-0 w-32 text-left"><div class="aspect-square rounded-3xl overflow-hidden shadow-md">'+nbArt(i)+'</div><p class="font-bold text-sky-700 text-xs mt-1">'+nabi[i][0]+'</p></button>').join('');
+honorAll();
 })();
 
 renderTrk();renderKh();renderDz();renderJ();show('home');
