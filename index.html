@@ -1979,7 +1979,7 @@ function ambRef(){const b=$('mBody');if(b&&b.querySelector('#ambm'))b.innerHTML=
 window.ambOpen=()=>openModal('Suasana Membaca',ambHTML());
 window.rmSet=m=>{RM=m;try{localStorage.setItem('tq_rm',m)}catch(e){}qTab('baca',m==='buku'?-1:Math.max(qs.r,0))};
 window.bkGo=d=>{const n=Math.ceil(cur.jumlahAyat/5),k=qs.r+d;if(k<0||k>=n)return;window._bkf=1;qTab('baca',k);const P=$('qpan');P.style.scrollMarginTop='90px';P.scrollIntoView({behavior:'smooth',block:'start'})};
-function modeBar(){const P=$('qpan');if(!P)return;P.insertAdjacentHTML('afterbegin','<div class="card p-3 mb-2 flex items-center gap-2 flex-wrap"><span class="text-xs font-semibold text-sky-700">Mode baca</span>'+[['gulir','Gulir'],['buku','Buku']].map(m=>'<button onclick="rmSet(\''+m[0]+'\')" class="px-3 py-1 rounded-full text-xs font-semibold '+(RM===m[0]?'btn shadow':'bg-white border border-sky-200 text-slate-500')+'">'+m[1]+'</button>').join('')+'<button id="ambBtn" onclick="ambOpen()" class="ml-auto px-3 py-1 rounded-full text-xs font-semibold bg-white border border-sky-200 text-sky-700">\u{1F3A7} '+ambLabel()+'</button></div>')}
+function modeBar(){const P=$('qpan');if(!P)return;P.insertAdjacentHTML('afterbegin','<div class="card p-3 mb-2 flex items-center gap-2 flex-wrap"><span class="text-xs font-semibold text-sky-700">Mode baca</span>'+[['gulir','Gulir'],['buku','Buku']].map(m=>'<button onclick="rmSet(\''+m[0]+'\')" class="px-3 py-1 rounded-full text-xs font-semibold '+(RM===m[0]?'btn shadow':'bg-white border border-sky-200 text-slate-500')+'">'+m[1]+'</button>').join('')+'<button onclick="msOpenSurah('+cur.nomor+')" class="ml-auto px-3 py-1 rounded-full text-xs font-semibold bg-white border border-sky-200 text-sky-700">Mushaf</button><button id="ambBtn" onclick="ambOpen()" class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-sky-200 text-sky-700">\u{1F3A7} '+ambLabel()+'</button></div>')}
 function bookify(){const P=$('qpan'),ch=P.querySelector('.overflow-x-auto'),cs=P.querySelector('.space-y-3');if(!cs||!ch)return;ch.style.display='none';cs.classList.add('bookpg');if(window._bkf){cs.classList.add('flip');window._bkf=0}const n=Math.ceil(cur.jumlahAyat/5),a=qs.r<=0,z=qs.r>=n-1;cs.insertAdjacentHTML('afterend','<div class="flex items-center justify-between mt-3 gap-2"><button '+(a?'disabled ':'')+'onclick="bkGo(-1)" class="btn px-4 py-2 rounded-xl text-sm font-semibold '+(a?'opacity-40':'')+'">\u2039 Sebelumnya</button><span class="text-xs text-slate-500">Halaman '+(qs.r+1)+' / '+n+'</span><button '+(z?'disabled ':'')+'onclick="bkGo(1)" class="btn px-4 py-2 rounded-xl text-sm font-semibold '+(z?'opacity-40':'')+'">Berikutnya \u203A</button></div>')}
 const _qt5=qTab;
 window._qtPlain=_qt5;window.modeBar=modeBar;qTab=function(t,r){const bk=(t==='baca'&&RM==='buku');_qt5(t,(bk&&(r===undefined||r<0))?0:r);if(t==='baca'){if(bk)window.bookRender(r===undefined?-1:r);else modeBar()}};
@@ -2034,6 +2034,50 @@ window.bookRender=function(r){const P=$('qpan');if(!P)return;const n=Math.ceil(c
  window.modeBar();bmInject();window._bkS=s};
 window.bkTo=p=>{window._bkd=0;qTab('baca',p)};
 window.bkGo=d=>{const n=Math.ceil(cur.jumlahAyat/5),per=innerWidth>=760?2:1,s=(window._bkS===undefined?-1:window._bkS)+d;if(s<-1||s>Math.ceil(n/per)-1)return;window._bkd=d;qTab('baca',s<0?-1:s*per);const P=$('qpan');P.style.scrollMarginTop='90px';P.scrollIntoView({behavior:'smooth',block:'start'})};
+})();
+
+/* V44: MUSHAF MADINAH 604 halaman (dua halaman, geser seperti membuka mushaf) */
+(function(){
+const AR=n=>String(n).replace(/\d/g,d=>'\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669'[d]);
+const QU='https://api.quran.com/api/v4/';
+const MC={};let CH=null,pg=+(localStorage.getItem('tq_mp')||1),L0=0,dir=0;
+const JZ=[1,22,42,62,82,102,121,142,162,182,201,222,242,262,282,302,322,342,362,382,402,422,442,462,482,502,522,542,562,582];
+document.head.insertAdjacentHTML('beforeend','<style>.msp{direction:rtl;font-size:clamp(21px,3.2vw,28px);line-height:2.2;text-align:justify;text-align-last:center;color:#1f2937}.ay{cursor:pointer;border-radius:6px;padding:0 1px}.ay.sel{background:rgba(250,204,21,.4)}.am{color:#b0813a;font-size:.7em;margin:0 3px}.sb{margin:8px 0 4px;padding:4px 8px;border:2px solid #c9a66b;border-radius:10px;text-align:center;background:#f6ecd4;font-size:.95em}.bsm{text-align:center;margin:2px 0 6px}.mspread{direction:rtl;display:grid}.mspread.p2{grid-template-columns:1fr 1fr}.mjz{direction:rtl;display:flex;justify-content:space-between;font-size:11px;color:#a8946a;margin-bottom:6px}</style>');
+async function chs(){if(CH)return CH;const r=await fetch(QU+'chapters?language=id'),j=await r.json();CH={};j.chapters.forEach(c=>CH[c.id]=c);return CH}
+async function getP(p){if(MC[p])return MC[p];const r=await fetch(QU+'verses/by_page/'+p+'?fields=text_uthmani&per_page=50'),j=await r.json();return MC[p]=j.verses.map(v=>({k:v.verse_key,s:+v.verse_key.split(':')[0],n:v.verse_number,t:v.text_uthmani,j:v.juz_number}))}
+function pageHtml(p,V,cls){const bm=bmGet();let h='<div class="bkpg '+cls+'">'+(V.some(v=>bm.some(b=>b.s===v.s&&b.a===v.n))?'<span class="bkrib"></span>':'')+'<div class="mjz"><span>\u0627\u0644\u062C\u0632\u0621 '+AR(V[0]?V[0].j:'')+'</span><span>'+[...new Set(V.map(v=>CH[v.s]?CH[v.s].name_arabic:''))].join(' \u2022 ')+'</span></div><div class="msp">',o=false;
+ V.forEach(v=>{if(v.n===1){if(o){h+='</p>';o=false}h+='<div class="sb">\u0633\u064F\u0648\u0631\u064E\u0629\u064F '+(CH[v.s]?CH[v.s].name_arabic:'')+'</div>'+((v.s!==1&&v.s!==9)?'<p class="bsm">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u0651\u064E\u0647\u0650 \u0671\u0644\u0631\u0651\u064E\u062D\u0652\u0645\u064E\u0640\u0670\u0646\u0650 \u0671\u0644\u0631\u0651\u064E\u062D\u0650\u064A\u0645\u0650</p>':'')}if(!o){h+='<p style="margin:0">';o=true}h+='<span class="ay" onclick="msTap('+v.s+','+v.n+',this)">'+v.t+'<span class="am">\uFD3F'+AR(v.n)+'\uFD3E</span></span> '});
+ return h+(o?'</p>':'')+'</div><div class="bkpn">'+AR(p)+'</div></div>'}
+async function render(){const E=$('msb');if(!E)return;pg=Math.min(604,Math.max(1,pg));const per=innerWidth>=760?2:1;L0=per===2?(pg%2===0?pg:pg-1):pg;const ps=per===2?[L0+1,L0].filter(x=>x>=1&&x<=604):[pg];const d=dir;dir=0;
+ E.innerHTML='<p class="text-center text-sm text-slate-400 py-10">Memuat halaman...</p>';
+ try{await chs();const D=await Promise.all(ps.map(getP));
+  E.innerHTML='<div class="mspread p'+per+'">'+ps.map((p,i)=>pageHtml(p,D[i],(per===2?(i?'l':'r'):'')+((d>0&&i===ps.length-1)?' flipL':'')+((d<0&&i===0)?' flip':''))).join('')+'</div>';
+  const V=D[0],j=V[0]?V[0].j:'',nm=[...new Set(V.map(v=>CH[v.s]?CH[v.s].name_simple:''))].join(', ');
+  $('msi').textContent='Juz '+j+' \u2022 '+nm+' \u2022 hal '+ps.slice().reverse().join('-');
+  try{localStorage.setItem('tq_mp',per===2?Math.max(1,L0):pg)}catch(e){}
+  if(V[0])saveLast(V[0].s,CH[V[0].s]?CH[V[0].s].name_simple:'',V[0].n);
+  const ss=$('mss');if(ss&&!ss.options.length){ss.innerHTML=Object.keys(CH).map(k=>'<option value="'+k+'">'+k+'. '+CH[k].name_simple+'</option>').join('');$('msj').innerHTML=JZ.map((x,i)=>'<option value="'+(i+1)+'">Juz '+(i+1)+'</option>').join('')}
+  if(ss)ss.value=V[0]?V[0].s:1;const jj=$('msj');if(jj)jj.value=j;$('msn').value=per===2?Math.max(1,L0):pg;
+ }catch(e){E.innerHTML='<p class="text-center text-sm text-pink-500 py-10">Halaman belum bisa dimuat. Periksa koneksi internet, lalu coba lagi.</p>'}}
+window.msNext=()=>{const per=innerWidth>=760?2:1;pg=per===2?L0+2:pg+1;dir=1;render()};
+window.msPrev=()=>{const per=innerWidth>=760?2:1;pg=Math.max(1,per===2?L0-2:pg-1);if(pg<1)return;dir=-1;render()};
+window.msGo=v=>{pg=+v||1;render()};
+window.msJuz=i=>{pg=JZ[i-1];render()};
+window.msSurah=n=>{pg=CH[n].pages[0];render()};
+window.msOpenSurah=async n=>{try{await chs();pg=CH[n].pages[0]}catch(e){}show('mushaf')};
+window.msBm=(sn,n)=>{const l=bmGet(),k=l.findIndex(x=>x.s===sn&&x.a===n);if(k>=0)l.splice(k,1);else{l.unshift({s:sn,n:CH[sn]?CH[sn].name_simple:'Surat '+sn,a:n,t:Date.now()});saveLast(sn,CH[sn]?CH[sn].name_simple:'',n)}bmSet(l);renderLast();closeModal();render()};
+window.msTap=(sn,n,el)=>{document.querySelectorAll('.ay.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');const nm=CH[sn]?CH[sn].name_simple:'Surat '+sn;
+ openModal(nm+' ayat '+n,'<p class="arab text-2xl text-right leading-loose" dir="rtl">'+el.firstChild.nodeValue+'</p><p id="mst" class="text-sm text-slate-600 mt-2">Memuat terjemah...</p><div class="flex gap-2 mt-3"><button onclick="msBm('+sn+','+n+')" class="btn px-4 py-2 rounded-xl text-sm font-semibold">Tandai</button><button id="msplay" class="px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-sky-200 text-sky-700">Putar</button></div>');
+ fetch('https://equran.id/api/v2/surat/'+sn).then(r=>r.json()).then(j=>{const a=j.data.ayat.find(x=>x.nomorAyat===n);if(!a)return;$('mst').textContent=a.teksIndonesia;$('msplay').onclick=()=>{const k=cur;cur={nomor:sn,namaLatin:nm,jumlahAyat:0};try{playAudio(a.audio['05'],nm+' ayat '+n)}finally{cur=k}}}).catch(()=>{const e=$('mst');if(e)e.textContent='Terjemah belum bisa dimuat (periksa koneksi).'})};
+let tx=null,ty=0;
+document.addEventListener('touchstart',e=>{if(e.target.closest&&e.target.closest('#msb')){tx=e.touches[0].clientX;ty=e.touches[0].clientY}else tx=null},{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>70&&Math.abs(dy)<45)(dx>0?msNext:msPrev)()},{passive:true});
+const NM=['mushaf','Mushaf Madinah','\u{1F4D6}'];
+MN.push(NM);TABOF.mushaf='h-quran';
+document.querySelector('#h-quran .grid').insertAdjacentHTML('afterbegin','<button class="tile" onclick="show(\'mushaf\')"><span class="i">'+NM[2]+'</span><b>'+NM[1]+'</b></button>');
+$('mm').firstElementChild.insertAdjacentHTML('beforeend','<button onclick="show(\'mushaf\')" class="rounded-xl bg-white/80 border border-sky-100 p-2 text-[11px] font-semibold text-sky-700"><span class="block text-xl">'+NM[2]+'</span>'+NM[1]+'</button>');
+document.querySelector('main').insertAdjacentHTML('beforeend',sec('mushaf',ttl('Mushaf Madinah','Baca Al-Qur\'an dalam bentuk halaman mushaf (604 halaman). Geser jari ke kanan untuk halaman berikutnya seperti membuka mushaf. Ketuk ayat untuk terjemah, putar, dan penanda.')+'<div class="flex gap-2 flex-wrap items-center mb-2"><select id="mss" onchange="msSurah(this.value)" class="rounded-lg border border-sky-200 bg-white text-xs p-1 max-w-[9rem]"></select><select id="msj" onchange="msJuz(this.value)" class="rounded-lg border border-sky-200 bg-white text-xs p-1"></select><label class="text-xs text-slate-500">Hal <input id="msn" type="number" min="1" max="604" onchange="msGo(this.value)" class="w-16 rounded-lg border border-sky-200 bg-white text-xs p-1"></label><button onclick="ambOpen()" class="ml-auto px-3 py-1 rounded-full text-xs font-semibold bg-white border border-sky-200 text-sky-700">\u{1F3A7} Suasana</button></div><p id="msi" class="text-xs text-center text-slate-500 mb-2"></p><div id="msb" class="bk" style="margin-right:0"></div><div class="flex justify-between mt-3"><button onclick="msNext()" class="btn px-4 py-2 rounded-xl text-sm font-semibold">\u2039 Berikutnya</button><button onclick="msPrev()" class="btn px-4 py-2 rounded-xl text-sm font-semibold">Sebelumnya \u203A</button></div><p class="text-[11px] text-slate-400 mt-2">Teks Uthmani dan pembagian halaman dari Quran.com. Garis baris tidak sama persis dengan mushaf cetak.</p>'));
+const _s7=show;show=function(id){_s7(id);if(id==='mushaf')render()};
 })();
 
 renderTrk();renderKh();renderDz();renderJ();show('home');
