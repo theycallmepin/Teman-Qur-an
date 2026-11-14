@@ -2054,7 +2054,7 @@ async function render(){const E=$('msb');if(!E)return;pg=Math.min(604,Math.max(1
   const V=D[0],j=V[0]?V[0].j:'',nm=[...new Set(V.map(v=>CH[v.s]?CH[v.s].name_simple:''))].join(', ');
   window._msS=V[0]?V[0].s:1;window.sstripScroll();$('msi').textContent='Juz '+j+' \u2022 '+nm+' \u2022 hal '+ps.join('-');
   try{localStorage.setItem('tq_mp',per===2?Math.max(1,L0):pg)}catch(e){}
-  if(V[0])saveLast(V[0].s,CH[V[0].s]?CH[V[0].s].name_simple:'',V[0].n);
+  window.markPage&&window.markPage(D);if(V[0])saveLast(V[0].s,CH[V[0].s]?CH[V[0].s].name_simple:'',V[0].n);
   const ss=$('mss');if(ss&&!ss.options.length){ss.innerHTML=Object.keys(CH).map(k=>'<option value="'+k+'">'+k+'. '+CH[k].name_simple+'</option>').join('');$('msj').innerHTML=JZ.map((x,i)=>'<option value="'+(i+1)+'">Juz '+(i+1)+'</option>').join('')}
   if(ss)ss.value=V[0]?V[0].s:1;const jj=$('msj');if(jj)jj.value=j;$('msn').value=per===2?Math.max(1,L0):pg;
  }catch(e){E.innerHTML='<p class="text-center text-sm text-pink-500 py-10">Halaman belum bisa dimuat. Periksa koneksi internet, lalu coba lagi.</p>'}}
@@ -2214,6 +2214,69 @@ $('lastc').insertAdjacentHTML('afterend','<div class="text-center mb-3"><button 
 const _qt9=qTab;
 qTab=function(t,r){_qt9(t,r);try{const k=cur&&window.crFor(cur.nomor);if(k&&(t==='baca'||t==='bg')&&$('qpan')&&!$('qpan').querySelector('.crcard'))$('qpan').insertAdjacentHTML('afterbegin','<div class="card-hl p-3 mb-2 flex items-center justify-between gap-2 crcard"><span class="text-xs font-semibold text-sky-700">Ada Cerita Tadabbur untuk surat ini</span><button onclick="crOpen(\''+k+'\')" class="btn px-3 py-1 rounded-xl text-xs font-semibold">Mulai</button></div>')}catch(e){}};
 try{if(!localStorage.getItem('tq_guide')){localStorage.setItem('tq_guide','1');setTimeout(()=>crOpen('panduan'),1200)}}catch(e){}
+
+/* V50: BELAJAR SAMBIL MAIN (permainan lembut untuk anak: tanpa kalah, tanpa batas waktu) */
+(function(){
+const KS=[1,103,104,105,106,107,108,109,110,112,113,114],SHORT=[1,103,105,106,107,108,109,110,112,113,114];
+const NAMA={1:'Al-Fatihah',103:"Al-'Asr",104:'Al-Humazah',105:'Al-Fil',106:'Quraisy',107:"Al-Ma'un",108:'Al-Kautsar',109:'Al-Kafirun',110:'An-Nasr',112:'Al-Ikhlas',113:'Al-Falaq',114:'An-Nas'};
+const GM=[['smb','\u{1F331}','Sambung Ayat','Dengar satu ayat, pilih lanjutannya','h'],['sus','\u{1FAB4}','Susun Ayat','Urutkan ayat-ayat sesuai bacaannya','h'],['sur','\u2753','Tebak Surah','Dengar bacaannya, tebak suratnya','h'],['psg','\u{1F0CF}','Pasangan Surah','Balik kartu, cari gambar dan namanya','h'],['gbr','\u{1F5BC}\uFE0F','Tebak Gambar Ayat','Ayat ini tentang apa? Pilih gambarnya','m']];
+const SD={};async function getS(n){if(SD[n])return SD[n];const j=await(await fetch('https://equran.id/api/v2/surat/'+n)).json();return SD[n]=j.data}
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]),pick=a=>a[Math.floor(Math.random()*a.length)];
+let au=null,st=null;const play=u=>{try{if(au)au.pause();au=new Audio(u);au.play().catch(()=>{})}catch(e){}};
+const box=h=>{$('gmb').innerHTML=h},fb=t=>{const e=$('pmf');if(e)e.textContent=t};
+const back=()=>'<button onclick="pmHome()" class="text-xs text-sky-700 underline mb-2">\u2190 Semua permainan</button>';
+const prog=()=>'<p class="text-[11px] text-slate-400 mb-2">Soal '+st.r+' dari '+st.n+'</p>';
+const ai=o=>SA[o]?'<img alt="" src="'+SA[o]+'" class="w-12 h-12 rounded-xl object-cover">':'';
+window.pmDbg=()=>st;window.pmHome=()=>{if(au)au.pause();st=null;let h='<p class="text-xs text-slate-500 mb-3">Pakai surat-surat pendek yang sering kita dengar. Tidak ada yang kalah dan tidak ada batas waktu.</p>';['h','m'].forEach(k=>{h+='<p class="text-[11px] font-bold tracking-widest text-emerald-700 mt-3 mb-1">'+(k==='h'?'HAFALAN':'MAKNA')+'</p>'+GM.filter(g=>g[4]===k).map(g=>'<button onclick="pmStart(\''+g[0]+'\')" class="card w-full text-left p-3 mb-2 flex items-center gap-3"><span class="text-3xl w-12 h-12 flex items-center justify-center rounded-2xl bg-white/70">'+g[1]+'</span><span class="flex-1"><b class="text-sky-700">'+g[2]+'</b><span class="block text-[11px] text-slate-500">'+g[3]+'</span></span><span class="text-slate-400">\u203A</span></button>').join('')});box(h)};
+window.pmStart=g=>{st={g:g,r:0,ok:0,n:g==='sus'?3:g==='psg'?1:5};next()};
+async function next(){if(st.r>=st.n)return done();st.r++;st.tried=false;box(back()+'<p class="text-sm text-slate-400">Memuat...</p>');try{await R[st.g]()}catch(e){box(back()+'<p class="text-sm text-pink-500">Belum bisa memuat. Periksa koneksi internet.</p>')}}
+function done(){const k=st.ok>=st.n-1?3:st.ok>=Math.ceil(st.n/2)?2:1;try{const o=JSON.parse(localStorage.getItem('tq_play')||'{}');o[st.g]=Math.max(o[st.g]||0,k);localStorage.setItem('tq_play',JSON.stringify(o))}catch(e){}
+ box(back()+'<div class="card-hl p-5 text-center"><p class="text-4xl">\u{1F389}</p><p class="text-2xl mt-1"><span class="text-amber-400">'+'\u2605'.repeat(k)+'</span><span class="text-slate-300">'+'\u2605'.repeat(3-k)+'</span></p><p class="text-sm text-slate-600 mt-1">Hebat, terus semangat belajar!</p><button onclick="pmStart(\''+st.g+'\')" class="btn mt-3 px-5 py-2 rounded-xl text-sm font-semibold">Main lagi</button></div>')}
+window.pmAns=(el,ok,msg)=>{if(ok){if(!st.tried)st.ok++;el.style.outline='3px solid #34d399';fb('Betul! '+(msg||''));document.querySelectorAll('#gmb button').forEach(b=>b.disabled=true);setTimeout(next,1400)}else{st.tried=true;el.disabled=true;el.style.opacity='.35';fb('Belum tepat, coba lagi ya.')}};
+window.pmPlay=u=>play(u);
+const opt3=s=>shuf([s,...shuf(KS.filter(x=>x!==s)).slice(0,2)]);
+const R={
+ async gbr(){const s=pick(KS),d=await getS(s),a=pick(d.ayat);box(back()+prog()+'<p class="arab text-2xl text-right leading-loose" dir="rtl">'+a.teksArab+'</p><p class="text-sm text-slate-600 mt-1">'+a.teksIndonesia+'</p><p class="text-sm font-semibold text-sky-700 mt-3">Ayat ini tentang apa? Pilih gambarnya</p><div class="grid grid-cols-3 gap-2 mt-2">'+opt3(s).map(o=>'<button '+(o===s?'data-ok="1" ':'')+'onclick="pmAns(this,'+(o===s)+',\''+(typeof AM!=='undefined'&&AM[o]?AM[o].replace(/'/g,'\\\''):'')+'\')" class="rounded-2xl overflow-hidden border-2 border-transparent"><img alt="" src="'+SA[o]+'" class="w-full aspect-square object-cover"></button>').join('')+'</div><p id="pmf" class="text-xs text-slate-500 mt-2"></p>')},
+ async sur(){const s=pick(KS),d=await getS(s),a=pick(d.ayat),u=a.audio['05'];box(back()+prog()+'<p class="text-sm font-semibold text-sky-700">Dengarkan bacaannya, lalu tebak suratnya</p><button onclick="pmPlay(\''+u+'\')" class="btn px-6 py-3 rounded-2xl my-3">\u25B6 Putar lagi</button><div class="space-y-2">'+opt3(s).map(o=>'<button '+(o===s?'data-ok="1" ':'')+'onclick="pmAns(this,'+(o===s)+',\''+NAMA[o]+'\')" class="card w-full p-3 flex items-center gap-3 text-left">'+ai(o)+'<b class="text-sky-700">'+NAMA[o]+'</b></button>').join('')+'</div><p id="pmf" class="text-xs text-slate-500 mt-2"></p>');play(u)},
+ async smb(){const s=pick(SHORT.filter(x=>x!==103&&x!==108&&x!==110)),d=await getS(s),A=d.ayat,n=Math.floor(Math.random()*(A.length-1)),good=A[n+1],bad=shuf(A.filter((_,i)=>i!==n+1&&i!==n)).slice(0,2);while(bad.length<2)bad.push(pick((await getS(112)).ayat));
+  box(back()+prog()+'<p class="text-sm font-semibold text-sky-700">Dengar satu ayat, lanjutannya yang mana?</p><p class="arab text-2xl text-right leading-loose mt-2" dir="rtl">'+A[n].teksArab+'</p><button onclick="pmPlay(\''+A[n].audio['05']+'\')" class="btn px-5 py-2 rounded-2xl my-2 text-sm">\u25B6 Putar</button><div class="space-y-2">'+shuf([good,...bad]).map(o=>'<button '+(o===good?'data-ok="1" ':'')+'onclick="pmAns(this,'+(o===good)+',\'\')" class="card w-full p-3 text-right arab text-xl" dir="rtl">'+o.teksArab+'</button>').join('')+'</div><p id="pmf" class="text-xs text-slate-500 mt-2"></p>');play(A[n].audio['05'])},
+ async sus(){const s=pick(SHORT.filter(x=>x!==1&&x!==103&&x!==108&&x!==110)),d=await getS(s),ay=d.ayat.slice(0,6);st.s={ay:ay,pos:0,tiles:shuf(ay.map((a,i)=>({i:i,a:a.teksArab,u:false}))),nm:NAMA[s]};susV()},
+ async psg(){const pk=shuf(KS).slice(0,6);let c=[];pk.forEach(o=>{c.push({id:o,t:'i'});c.push({id:o,t:'n'})});st.m={c:shuf(c),o:[],d:0,n:0,lock:false};memV()}};
+function susV(){const q=st.s;box(back()+prog()+'<p class="text-sm font-semibold text-sky-700">Susun ayat surat '+q.nm+' sesuai urutan bacaannya</p><div class="space-y-1 my-2">'+q.ay.map((a,i)=>'<div class="card-hl p-2 text-right arab text-xl" dir="rtl" style="min-height:2.4rem">'+(i<q.pos?a.teksArab:'')+'</div>').join('')+'</div><div class="space-y-2">'+q.tiles.map((t,k)=>'<button '+(t.u?'disabled ':'')+'onclick="pmTile('+k+')" class="card w-full p-2 text-right arab text-xl '+(t.u?'opacity-30':'')+'" dir="rtl">'+t.a+'</button>').join('')+'</div><p id="pmf" class="text-xs text-slate-500 mt-2"></p>')}
+window.pmTile=k=>{const q=st.s,t=q.tiles[k];if(t.u)return;if(t.i===q.pos){t.u=true;q.pos++;play(q.ay[t.i].audio['05']);susV();if(q.pos>=q.ay.length){if(!st.tried)st.ok++;fb('Betul! Surat '+q.nm+' sudah tersusun.');setTimeout(next,1800)}}else{st.tried=true;fb('Belum tepat, coba lagi ya.')}};
+function memV(){const m=st.m;box(back()+'<p class="text-xs text-slate-500 mb-2">Cari pasangan: gambar surat dan namanya. Percobaan: <b>'+m.n+'</b></p><div class="grid grid-cols-3 gap-2">'+m.c.map((x,k)=>'<button onclick="pmFlip('+k+')" class="'+(x.ok?'card-hl':'card')+' h-24 flex items-center justify-center overflow-hidden '+(x.o||x.ok?'':'btn')+'">'+(x.o||x.ok?(x.t==='i'?'<img alt="" src="'+SA[x.id]+'" class="w-full h-full object-cover">':'<b class="text-sky-700 text-sm px-1">'+NAMA[x.id]+'</b>'):'<span class="text-2xl">?</span>')+'</button>').join('')+'</div>')}
+window.pmFlip=k=>{const m=st.m,x=m.c[k];if(m.lock||x.o||x.ok)return;x.o=true;m.o.push(k);if(m.o.length===2){m.n++;const a=m.c[m.o[0]],b=m.c[m.o[1]];if(a.id===b.id&&a.t!==b.t){a.ok=b.ok=true;a.o=b.o=false;m.o=[];m.d++;memV();if(m.d===6){st.ok=m.n<=9?st.n:m.n<=14?Math.ceil(st.n/2):0;setTimeout(done,700)}return}m.lock=true;memV();setTimeout(()=>{a.o=b.o=false;m.o=[];m.lock=false;memV()},900);return}memV()};
+const NM=['main','Belajar Sambil Main','\u{1F3AE}'];MN.push(NM);TABOF.main='h-ilmu';
+document.querySelector('#h-ilmu .grid').insertAdjacentHTML('afterbegin','<button class="tile" onclick="show(\'main\')"><span class="i">'+NM[2]+'</span><b>'+NM[1]+'</b></button>');
+$('mm').firstElementChild.insertAdjacentHTML('beforeend','<button onclick="show(\'main\')" class="rounded-xl bg-white/80 border border-sky-100 p-2 text-[11px] font-semibold text-sky-700"><span class="block text-xl">'+NM[2]+'</span>'+NM[1]+'</button>');
+document.querySelector('main').insertAdjacentHTML('beforeend',sec('main',ttl('Belajar Sambil Main','Permainan lembut untuk anak dan keluarga: dengar, tebak, dan susun ayat dari surat-surat pendek.')+'<div id="gmb"></div>'));
+const _s9=show;show=function(id){_s9(id);if(id==='main')pmHome()};
+})();
+
+/* V51: TAMPILAN iPAD (portrait & landscape), STATISTIK MEMBACA (hari beruntun, ayat hari ini, target) */
+document.head.insertAdjacentHTML('beforeend','<style>@media(min-width:760px){.max-w-xl{max-width:760px!important}[id^=h-] .grid{grid-template-columns:repeat(3,1fr)!important}}@media(min-width:1000px){.max-w-xl{max-width:1080px!important}[id^=h-] .grid{grid-template-columns:repeat(4,1fr)!important}#home:not(.hidden){display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-items:start}#home>*{grid-column:1/-1}#pcard{grid-column:1!important;grid-row:1}#ayh{grid-column:2!important;grid-row:1}#stt{grid-column:1!important;grid-row:2}#mtr{grid-column:2!important;grid-row:2}#lastc:empty{display:none}#home .grid.grid-cols-3{grid-template-columns:repeat(6,1fr)!important}#qpan>.space-y-3{display:grid;grid-template-columns:1fr 1fr;gap:12px}#qpan>.space-y-3>*{margin:0!important}#qlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}#qlist>*{margin:0!important}}</style>');
+(function(){
+const f=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),today=()=>f(new Date());
+let RD={d:'',k:[]},DY=[],TG=+(localStorage.getItem('tq_tg')||20);
+try{RD=JSON.parse(localStorage.getItem('tq_rd')||'{"d":"","k":[]}');DY=JSON.parse(localStorage.getItem('tq_days')||'[]')}catch(e){}
+let set=new Set(RD.d===today()?RD.k:[]),tm=null;
+function flush(){try{localStorage.setItem('tq_rd',JSON.stringify({d:today(),k:[...set]}));localStorage.setItem('tq_days',JSON.stringify(DY.slice(-400)))}catch(e){}renderStats()}
+function mr(sn,n){const t=today();if(RD.d!==t){RD.d=t;set=new Set()}set.add(sn+':'+n);if(!DY.includes(t))DY.push(t);clearTimeout(tm);tm=setTimeout(flush,450)}
+window.markPage=D=>D.forEach(V=>V.forEach(v=>mr(v.s,v.n)));
+function streak(){const S=new Set(DY);let d=new Date(),c=0;if(!S.has(f(d)))d.setDate(d.getDate()-1);while(S.has(f(d))){c++;d.setDate(d.getDate()-1)}return c}
+window.stTg=()=>{const o=[10,20,50,100];TG=o[(o.indexOf(TG)+1)%o.length];try{localStorage.setItem('tq_tg',TG)}catch(e){}renderStats()};
+function renderStats(){const e=$('stt');if(!e)return;const n=RD.d===today()?set.size:0,pc=Math.min(100,Math.round(n/TG*100));
+ e.innerHTML='<div class="card-hl p-3 text-center"><div class="text-xl">\u{1F525}</div><b class="text-lg text-sky-700">'+streak()+'</b><p class="text-[10px] text-slate-500">hari beruntun</p></div><div class="card-hl p-3 text-center"><div class="text-xl">\u{1F4D6}</div><b class="text-lg text-sky-700">'+n+'</b><p class="text-[10px] text-slate-500">ayat dibaca hari ini</p></div><button onclick="stTg()" class="card-hl p-3 text-center"><div style="width:40px;height:40px;border-radius:50%;margin:0 auto;background:conic-gradient(#34d399 '+pc+'%,rgba(0,0,0,.1) 0);display:flex;align-items:center;justify-content:center"><div style="width:29px;height:29px;border-radius:50%;background:#fff;font-size:13px;line-height:29px">'+(pc>=100?'\u2713':'')+'</div></div><p class="text-[10px] text-slate-500 mt-1">target '+TG+' ayat (ketuk ubah)</p></button>'}
+const mt=document.querySelector('#home > .card-hl.p-4.mb-5.text-center');if(mt)mt.id='mtr';
+$('pcard').insertAdjacentHTML('afterend','<div id="stt" class="grid grid-cols-3 gap-2 mb-4"></div>');
+const _qt10=qTab;
+qTab=function(t,r){_qt10(t,r);try{if(t==='baca'&&cur&&qs.r>=0){const two=!!document.querySelector('#qpan .bkspread.p2'),bk=!!document.querySelector('#qpan .bk');for(let p=qs.r;p<qs.r+(bk&&two?2:1);p++)for(let n=p*5+1;n<=Math.min((p+1)*5,cur.jumlahAyat);n++)mr(cur.nomor,n)}}catch(e){}};
+const _s11=show;show=function(id){_s11(id);if(id==='home')renderStats()};
+// putar layar iPad: susun ulang tampilan baca bila jumlah halaman per layar berubah
+let lp=innerWidth>=760?2:1,rt=null;
+addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{const per=innerWidth>=760?2:1;if(per===lp)return;lp=per;try{if($('mushaf')&&!$('mushaf').classList.contains('hidden')&&$('msn'))msGo($('msn').value);else if(document.querySelector('#qpan .bk'))qTab('baca',window._bkS<0?-1:qs.r)}catch(e){}},400)});
+renderStats();
+})();
 
 renderTrk();renderKh();renderDz();renderJ();show('home');
 </script>
